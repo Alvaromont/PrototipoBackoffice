@@ -125,7 +125,7 @@ public class Altaordenes extends javax.swing.JFrame {
 
         jButton2.setText("BORRAR DATOS");
 
-        jLabel14.setText("jLabel14");
+        jLabel14.setText("ALTA DE ORDENES:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +179,7 @@ public class Altaordenes extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(86, 86, 86)
                         .addComponent(jButton2)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
