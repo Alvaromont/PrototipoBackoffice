@@ -5,7 +5,7 @@
  */
 package prototipobackoffice;
 
-import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 import javax.swing.JOptionPane;
 
