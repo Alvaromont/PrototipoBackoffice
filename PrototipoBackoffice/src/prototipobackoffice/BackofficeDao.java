@@ -23,52 +23,50 @@ public class BackofficeDao {
     public BackofficeDao() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    
-    
-    public static void main(String[] ars){
+
+    public static void main(String[] ars) {
         new BackofficeDao().insertarOrden(new Orden(0, "BS99090", "", "bbva", "BBVABIC", "PAGO", 0, "EUR", new java.util.Date(), new java.util.Date(), new java.util.Date(), "jorge", "123456789", "Alvaro", "12345678", "MT202"));
     }
-                   
 
     public void insertarOrden(Orden orden) {
 
-        String sql = "insert into ordenes(id_orden, tipo_orden, ref_orden, contrapartida,sentido, importe, "
-                          + "divisa, fecha_entrada,fecha_valor, fecha_liquidacion,estado, corresponsal_propio, "
-                          + "cuenta_corresponsal_propio) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into ordenes(id_orden, BIC_entidad, ref_orden, contrapartida,BIC_contrapartida,sentido, importe, "
+                          + "divisa, fecha_entrada,fecha_valor, fecha_liquidacion, corresponsal_propio,cuenta_corresponsal_propio,"
+                          + "corresponsal_ajeno, cuenta_corresponsal_ajeno, tipo_mensaje values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             // prepared statement para insertar con la conexion
             PreparedStatement stmt = this.connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             //setear los valores
             stmt.setLong(1, orden.getId_orden());
-            stmt.setString(2, "Individual") ;      //-------------------------------------------------------------------------------------------------------
-            stmt.setString(3, "");
+            stmt.setString(2, orden.getBIC_Entidad());      //-------------------------------------------------------------------------------------------------------
+            stmt.setString(3, ""); //LO CALCULAMOS DEBAJO
             stmt.setString(4, orden.getContrapartida());
             stmt.setString(5, orden.getSentido());
             stmt.setDouble(6, orden.getImporte());
             stmt.setString(7, orden.getDivisa());
-            stmt.setDate(8,new java.sql.Date(orden.getFecha_Valor().getTime()));
+            stmt.setDate(8, new java.sql.Date(orden.getFecha_Valor().getTime()));
             stmt.setDate(9, new java.sql.Date(orden.getFecha_Valor().getTime()));
             stmt.setDate(10, new java.sql.Date(orden.getFecha_Valor().getTime()));
             stmt.setString(12, "");             //-------------------------------------------------------------------------------------------------------
             stmt.setString(13, orden.getCorresponsal_Propio());
             stmt.setString(14, orden.getCuenta_Corresponsal_Propio());
 
-            
             //ejecuta
             stmt.execute();
-            
+
             ResultSet rs = stmt.getGeneratedKeys();
-            
+
             long id = 0;
-            if(rs.next())
-                 id = rs.getLong(1);
-            
+            if (rs.next()) {
+                id = rs.getLong(1);
+            }
+
             String sqlupdate = "UPDATE orden SET ref = 'ORDEN0000" + id + "' WHERE id = " + id;
-            stmt = this.connection.prepareStatement(sqlupdate);            
+            stmt = this.connection.prepareStatement(sqlupdate);
             //ejecuta
             stmt.execute();
-            
+
             stmt.close();
 
         } catch (Exception e) {
