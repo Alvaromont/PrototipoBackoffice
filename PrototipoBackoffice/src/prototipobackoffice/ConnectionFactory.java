@@ -23,7 +23,7 @@ public class ConnectionFactory {
             agenda es el nombre de la BBDD
             */
             //createDatabaseIfNotExist = true;
-            String url = "jdbc:mysql://localhost:3306/tienda";
+            String url = "jdbc:mysql://localhost:3306/backoffice";
             String usuario = "root";
             String password = "root";
             
