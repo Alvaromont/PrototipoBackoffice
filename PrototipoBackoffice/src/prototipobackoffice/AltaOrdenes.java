@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author alvaro.montero
  */
-public class Altaordenes extends javax.swing.JFrame {
+public class AltaOrdenes extends javax.swing.JFrame {
 
     /**
      * Creates new form Altaordenes
      */
-    public Altaordenes() {
+    public AltaOrdenes() {
         initComponents();
     }
 
@@ -559,19 +559,19 @@ public class Altaordenes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Altaordenes.class
+            java.util.logging.Logger.getLogger(AltaOrdenes.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Altaordenes.class
+            java.util.logging.Logger.getLogger(AltaOrdenes.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Altaordenes.class
+            java.util.logging.Logger.getLogger(AltaOrdenes.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Altaordenes.class
+            java.util.logging.Logger.getLogger(AltaOrdenes.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -579,7 +579,7 @@ public class Altaordenes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Altaordenes().setVisible(true);
+                new AltaOrdenes().setVisible(true);
             }
         });
     }
