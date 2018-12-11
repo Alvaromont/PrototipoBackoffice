@@ -335,7 +335,7 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
 
     private void btnNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaOrdenActionPerformed
         // TODO add your handling code here:
-        Altaordenes p1 = new Altaordenes();
+        AltaOrdenes p1 = new AltaOrdenes();
         p1.setLocationRelativeTo(this);
         p1.setVisible(true);
     }//GEN-LAST:event_btnNuevaOrdenActionPerformed
