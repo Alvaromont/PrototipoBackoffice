@@ -7,6 +7,7 @@ package prototipobackoffice;
 
 import java.sql.*;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -128,4 +129,39 @@ public class MensajeDao {
             e.printStackTrace();
         }
     }
+
+    public void insertarMensaje(Mensaje m, Orden orden) {
+
+        try {
+            int cantidad = 0;
+            String sqlnumMensaje = "Select count(id_mensaje) cantidad from mensaje where id_orden=" + orden.getId_orden();
+
+            PreparedStatement stmt = this.connection.prepareStatement(sqlnumMensaje);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                cantidad = rs.getInt("cantidad");
+                cantidad++;
+            }
+            rs.close();
+
+            String sql = "insert into mensaje(tipo_mensaje, estado_cruce, TRN, id_orden) values (?,?,?,?)";
+            // prepared statement para insertar con la conexion
+            stmt = this.connection.prepareStatement(sql);
+
+            //setear los valores
+            stmt.setString(1, m.getTipoMensaje());      //-------------------------------------------------------------------------------------------------------
+            stmt.setString(2, m.getEstadoCruce());
+            stmt.setString(3, orden.getRef_Orden() + "." + cantidad);//TRN LO CALCULAMOS DEBAJO
+            stmt.setInt(4, orden.getId_orden());//TRN LO CALCULAMOS DEBAJO
+
+            //ejecuta
+            stmt.execute();
+
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
