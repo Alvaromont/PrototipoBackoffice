@@ -5,6 +5,7 @@
  */
 package prototipobackoffice;
 
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -91,6 +92,8 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         dateChooserCombo4 = new datechooser.beans.DateChooserCombo();
         dateChooserCombo5 = new datechooser.beans.DateChooserCombo();
         dateChooserCombo6 = new datechooser.beans.DateChooserCombo();
+        jLabel16 = new javax.swing.JLabel();
+        btnBusqueda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +140,11 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         btnLiquidarManual.setText("LIQUIDAR MANUAL");
 
         btnConsultarMensajes.setText("CONSULTAR MENSAJES");
+        btnConsultarMensajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarMensajesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("PANTALLA DE CONSULTA DE ÓRDENES");
 
@@ -167,6 +175,15 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         jLabel14.setText("F. Liquidacion hasta:");
 
         jLabel15.setText("Corresponsal Propio:");
+
+        jLabel16.setText("TODOS LOS CAMPOS SON OBLIGATORIOS.");
+
+        btnBusqueda.setText("LANZAR BUSQUEDA");
+        btnBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusquedaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,7 +248,14 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(dateChooserCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dateChooserCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(115, 115, 115)
+                                        .addComponent(jLabel16))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(185, 185, 185)
+                                        .addComponent(btnBusqueda))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(btnNuevaOrden)
@@ -299,11 +323,18 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(dateChooserCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(dateChooserCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel16))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(dateChooserCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(dateChooserCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(22, 22, 22)
+                                                    .addComponent(btnBusqueda))))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel12)
                                             .addGap(18, 18, 18)
@@ -342,9 +373,8 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
 
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
         // TODO add your handling code here:
-        //BackofficeDao dao = new BackofficeDao();
-        // falta crear este metodo en el Dao.
-        //dao.liberarOrden(orden);
+        BackofficeDao dao = new BackofficeDao();
+        dao.LiberarOrden(orden);
     }//GEN-LAST:event_btnLiberarActionPerformed
 
     private void TablaConsultaOrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaConsultaOrdenMouseClicked
@@ -388,6 +418,19 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TablaConsultaOrdenMouseClicked
 
+    private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
+        //si clicko en este boton se lanzara la busqueda correspondiente
+            //String nombreBusqueda = txtBusqueda.getText();
+            //Llamando al metodo del dao que corresponda.
+            //dao.busqueda(nombreBusqueda);
+    }//GEN-LAST:event_btnBusquedaActionPerformed
+
+    private void btnConsultarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMensajesActionPerformed
+        ConsultaComunicaciones p2 = new ConsultaComunicaciones ();
+        p2.setLocationRelativeTo(this);
+        p2.setVisible(true);
+    }//GEN-LAST:event_btnConsultarMensajesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,6 +468,7 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaConsultaOrden;
+    private javax.swing.JButton btnBusqueda;
     private javax.swing.JButton btnConsultarMensajes;
     private javax.swing.JButton btnLiberar;
     private javax.swing.JButton btnLiquidarManual;
@@ -442,6 +486,7 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
