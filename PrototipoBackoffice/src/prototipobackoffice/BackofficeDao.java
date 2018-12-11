@@ -51,7 +51,7 @@ public class BackofficeDao {
             stmt.setString(6, orden.getSentido());
             stmt.setDouble(7, orden.getImporte());
             stmt.setString(8, orden.getDivisa());
-            stmt.setString(9, sdf.format(orden.getFecha_Valor()));
+            stmt.setString(9, sdf.format(orden.getFecha_Entrada()));
             stmt.setString(10, sdf.format(orden.getFecha_Valor()));
             stmt.setString(11, sdf.format(orden.getFecha_Valor()));
             stmt.setString(12, sdf.format(orden.getFecha_Valor()));
