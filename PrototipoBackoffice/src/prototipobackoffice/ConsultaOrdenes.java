@@ -32,18 +32,18 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         BackofficeDao dao = new BackofficeDao();
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new Object[]{"id", "nombre", "precio", "unidades"});
-        List<Orden> ordenes = dao.listaTodas(nombreBusqueda);
+//        List<Orden> ordenes = dao.listaTodas(nombreBusqueda);
 
         TablaConsultaOrden.setModel(dtm);
 
-        for (Orden m : ordenes) {
-            Object[] o = new Object[4];
-            //o[0] = m.getId();
-            //o[1] = m.getNombre();
-            //o[2] = m.getPrecio();
-            //o[3] = m.getUnidades();
-            dtm.addRow(o);
-        }
+//        for (Orden m : ordenes) {
+//            Object[] o = new Object[4];
+//            //o[0] = m.getId();
+//            //o[1] = m.getNombre();
+//            //o[2] = m.getPrecio();
+//            //o[3] = m.getUnidades();
+//            dtm.addRow(o);
+//        }
         dao.closeConnection();
     }
 

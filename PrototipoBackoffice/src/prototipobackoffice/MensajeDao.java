@@ -66,7 +66,7 @@ public class MensajeDao {
 
         }
 
-        return mensajeResultante;
+        return null;
     }
 
     String getMensajeMT103() {
@@ -116,7 +116,7 @@ public class MensajeDao {
             default:
                 JOptionPane.showMessageDialog(null, "El mensaje recibido no se corresponde con ninguno de los almacenados");
         }
-        return mensajeResultante;
+        return null;
     }
 
     public void closeConnection() {
