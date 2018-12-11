@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -31,17 +31,17 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="550" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Component id="txtLiquidacionDesde" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="dateChooserCombo3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                              <Component id="txtValorDesde" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="dateChooserCombo1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -65,8 +65,8 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Component id="txtLiberacionDesde" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="dateChooserCombo2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -79,15 +79,24 @@
                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtRefOrden" max="32767" attributes="0"/>
-                          <Component id="txtCorresponsalPropio" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtDivisa" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtImporteHasta" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtLiberacionHasta" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtValorHasta" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtLiquidacionHasta" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtRefOrden" pref="121" max="32767" attributes="0"/>
+                                  <Component id="txtCorresponsalPropio" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtDivisa" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtImporteHasta" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="dateChooserCombo6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dateChooserCombo4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dateChooserCombo5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -144,12 +153,12 @@
                               <Component id="txtSentido" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtImporteDesde" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="txtLiberacionDesde" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtValorDesde" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="txtLiquidacionDesde" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateChooserCombo2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="dateChooserCombo1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="dateChooserCombo3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -158,20 +167,31 @@
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="dateChooserCombo5" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="dateChooserCombo4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="dateChooserCombo6" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -183,12 +203,7 @@
                           <Component id="txtDivisa" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtImporteHasta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtLiberacionHasta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="txtValorHasta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtLiquidacionHasta" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -421,14 +436,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtImporteDesde">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtLiberacionDesde">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtValorDesde">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtLiquidacionDesde">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtLiquidacionHasta">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtRefOrden">
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorresponsalPropio">
@@ -437,9 +444,17 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtImporteHasta">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtLiberacionHasta">
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo1">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtValorHasta">
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo2">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo3">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo4">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo5">
+    </Component>
+    <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo6">
     </Component>
   </SubComponents>
 </Form>

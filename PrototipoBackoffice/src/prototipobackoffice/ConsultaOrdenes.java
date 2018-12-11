@@ -81,16 +81,16 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         txtEstadoOrden = new javax.swing.JTextField();
         txtSentido = new javax.swing.JTextField();
         txtImporteDesde = new javax.swing.JTextField();
-        txtLiberacionDesde = new javax.swing.JTextField();
-        txtValorDesde = new javax.swing.JTextField();
-        txtLiquidacionDesde = new javax.swing.JTextField();
-        txtLiquidacionHasta = new javax.swing.JTextField();
         txtRefOrden = new javax.swing.JTextField();
         txtCorresponsalPropio = new javax.swing.JTextField();
         txtDivisa = new javax.swing.JTextField();
         txtImporteHasta = new javax.swing.JTextField();
-        txtLiberacionHasta = new javax.swing.JTextField();
-        txtValorHasta = new javax.swing.JTextField();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo3 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo4 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo5 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo6 = new datechooser.beans.DateChooserCombo();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,16 +179,16 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(550, 550, 550)
+                        .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addGap(53, 53, 53)
-                                .addComponent(txtLiquidacionDesde))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dateChooserCombo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(88, 88, 88)
-                                .addComponent(txtValorDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(104, 104, 104)
@@ -207,8 +207,8 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                                 .addComponent(txtImporteDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(58, 58, 58)
-                                .addComponent(txtLiberacionDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dateChooserCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
@@ -218,15 +218,20 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel9)
                             .addComponent(jLabel15))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtRefOrden)
-                            .addComponent(txtCorresponsalPropio)
-                            .addComponent(txtDivisa)
-                            .addComponent(txtImporteHasta)
-                            .addComponent(txtLiberacionHasta)
-                            .addComponent(txtValorHasta)
-                            .addComponent(txtLiquidacionHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtRefOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                    .addComponent(txtCorresponsalPropio)
+                                    .addComponent(txtDivisa)
+                                    .addComponent(txtImporteHasta)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dateChooserCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateChooserCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(btnNuevaOrden)
@@ -273,30 +278,38 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                                 .addComponent(txtSentido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtImporteDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtLiberacionDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtValorDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(txtLiquidacionDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(dateChooserCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dateChooserCombo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel9)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel15))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(44, 44, 44)
                                     .addComponent(jLabel10)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel11)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jLabel12)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel13)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel14))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel15))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(dateChooserCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(dateChooserCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel12)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel13)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel14))))))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(txtRefOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -305,12 +318,7 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                             .addComponent(txtDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtImporteHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtLiberacionHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)
-                            .addComponent(txtValorHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtLiquidacionHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(108, 108, 108))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevaOrden)
@@ -421,6 +429,12 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private javax.swing.JButton btnLiberar;
     private javax.swing.JButton btnLiquidarManual;
     private javax.swing.JButton btnNuevaOrden;
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
+    private datechooser.beans.DateChooserCombo dateChooserCombo2;
+    private datechooser.beans.DateChooserCombo dateChooserCombo3;
+    private datechooser.beans.DateChooserCombo dateChooserCombo4;
+    private datechooser.beans.DateChooserCombo dateChooserCombo5;
+    private datechooser.beans.DateChooserCombo dateChooserCombo6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -443,13 +457,7 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private javax.swing.JTextField txtEstadoOrden;
     private javax.swing.JTextField txtImporteDesde;
     private javax.swing.JTextField txtImporteHasta;
-    private javax.swing.JTextField txtLiberacionDesde;
-    private javax.swing.JTextField txtLiberacionHasta;
-    private javax.swing.JTextField txtLiquidacionDesde;
-    private javax.swing.JTextField txtLiquidacionHasta;
     private javax.swing.JTextField txtRefOrden;
     private javax.swing.JTextField txtSentido;
-    private javax.swing.JTextField txtValorDesde;
-    private javax.swing.JTextField txtValorHasta;
     // End of variables declaration//GEN-END:variables
 }

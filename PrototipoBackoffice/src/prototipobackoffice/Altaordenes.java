@@ -5,6 +5,9 @@
  */
 package prototipobackoffice;
 
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alvaro.montero
@@ -45,7 +48,7 @@ public class Altaordenes extends javax.swing.JFrame {
         jComboSentido = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jComboMensaje = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -78,11 +81,29 @@ public class Altaordenes extends javax.swing.JFrame {
 
         jLabel4.setText("BIC Contrapartida:");
 
+        txtBICContrapartida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBICContrapartidaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBICContrapartidaKeyReleased(evt);
+            }
+        });
+
         jLabel5.setText("(*) Sentido:");
 
         jLabel6.setText("(*) Importe:");
 
         jLabel7.setText("(*) Divisa:");
+
+        txtDivisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDivisaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDivisaKeyReleased(evt);
+            }
+        });
 
         jLabel8.setText("(*) Fecha valor:");
 
@@ -103,10 +124,10 @@ public class Altaordenes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("ACEPTAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setText("ACEPTAR");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -122,6 +143,24 @@ public class Altaordenes extends javax.swing.JFrame {
         jLabel17.setText("(*) Corresponsal Propio:");
 
         jLabel18.setText("Cuenta Corresponsal Propio:");
+
+        txtCorresponsalPropio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorresponsalPropioKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCorresponsalPropioKeyReleased(evt);
+            }
+        });
+
+        txtCuentaCorresponsalPropio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCuentaCorresponsalPropioKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCuentaCorresponsalPropioKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,6 +192,24 @@ public class Altaordenes extends javax.swing.JFrame {
         );
 
         jTabbedPane2.addTab("Corresponsal Propio", jPanel2);
+
+        txtCorresponsalAjeno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorresponsalAjenoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCorresponsalAjenoKeyReleased(evt);
+            }
+        });
+
+        txtCuentaCorresponsalAjeno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCuentaCorresponsalAjenoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCuentaCorresponsalAjenoKeyReleased(evt);
+            }
+        });
 
         jLabel15.setText("(*) Corresponsal Ajeno:");
 
@@ -238,7 +295,7 @@ public class Altaordenes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel13)
-                                    .addComponent(jButton1))
+                                    .addComponent(btnAceptar))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -318,7 +375,7 @@ public class Altaordenes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton1)
+                                    .addComponent(btnAceptar)
                                     .addComponent(jButton2)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -343,10 +400,36 @@ public class Altaordenes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        try {
+            String tipo_Orden = "Individual";
+            String ref_Orden = "";
+            String contrapartida = txtContrapartida.getText();
+            String bic_Contrapartida = txtBICContrapartida.getText();
+            String sentido = jComboSentido.getSelectedItem().toString();
+            double importe = Double.parseDouble(txtImporte.getText());
+            String divisa = txtDivisa.getText();
+            Date fecha_Entrada = new java.util.Date();
+            Date fecha_Valor = new java.util.Date();
+            Date fecha_liberacion = new java.util.Date();
+            Date fecha_Liquidacion = new java.util.Date();
+            String corresponsal_Propio = txtCorresponsalPropio.getText();
+            String cuenta_Corresponsal_Propio = txtCorresponsalPropio.getText();
+            String corresponsal_Ajeno = txtCorresponsalAjeno.getText();
+            String cuenta_Corresponsal_Ajeno = txtCuentaCorresponsalAjeno.getText();
+            String tipo_Mensaje = jComboMensaje.getSelectedItem().toString();
+            String estado = "No liberada";
+            Orden ordenInsertar = new Orden(tipo_Orden, ref_Orden, contrapartida, sentido, importe, divisa, fecha_Entrada, fecha_Valor, fecha_Liquidacion, fecha_liberacion, corresponsal_Propio, cuenta_Corresponsal_Propio, bic_Contrapartida, corresponsal_Ajeno, cuenta_Corresponsal_Ajeno, tipo_Mensaje);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+            new BackofficeDao().insertarOrden(ordenInsertar);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo importe debe contener un valor estrictamente numerico", "ATENCION", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
 
     private void jComboMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMensajeActionPerformed
         // TODO add your handling code here:
@@ -361,23 +444,107 @@ public class Altaordenes extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    txtBICContrapartida.setText("");
-    txtBICEntidad.setText("BSCHESMMXXX");
-    txtContrapartida.setText("");
-    txtCorresponsalAjeno.setText("");
-    txtCorresponsalPropio.setText("");
-    txtCuentaCorresponsalAjeno.setText("");
-    txtCuentaCorresponsalPropio.setText("");
-    txtDivisa.setText("");
-    txtFechaValor.setText("");
-    txtImporte.setText("");
-    txtReferenciaOrden.setText("");
+        txtBICContrapartida.setText("");
+        txtBICEntidad.setText("BSCHESMMXXX");
+        txtContrapartida.setText("");
+        txtCorresponsalAjeno.setText("");
+        txtCorresponsalPropio.setText("");
+        txtCuentaCorresponsalAjeno.setText("");
+        txtCuentaCorresponsalPropio.setText("");
+        txtDivisa.setText("");
+        txtFechaValor.setText("");
+        txtImporte.setText("");
+        txtReferenciaOrden.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    private void txtDivisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyPressed
+        // TODO add your handling code here:
+        if (txtDivisa.getText().length() >= 3) {
+            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
+        }
+    }//GEN-LAST:event_txtDivisaKeyPressed
+
+    private void txtDivisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyReleased
+        // TODO add your handling code here:
+        if (txtDivisa.getText().length() >= 3) {
+            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
+        }
+    }//GEN-LAST:event_txtDivisaKeyReleased
+
+    private void txtBICContrapartidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBICContrapartidaKeyPressed
+        // TODO add your handling code here:
+        if (txtBICContrapartida.getText().length() >= 11) {
+            txtBICContrapartida.setText(txtBICContrapartida.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtBICContrapartidaKeyPressed
+
+    private void txtBICContrapartidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBICContrapartidaKeyReleased
+        // TODO add your handling code here:
+        if (txtBICContrapartida.getText().length() >= 11) {
+            txtBICContrapartida.setText(txtBICContrapartida.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtBICContrapartidaKeyReleased
+
+    private void txtCorresponsalPropioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalPropioKeyPressed
+        // TODO add your handling code here:
+        if (txtCorresponsalPropio.getText().length() >= 11) {
+            txtCorresponsalPropio.setText(txtCorresponsalPropio.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtCorresponsalPropioKeyPressed
+
+    private void txtCorresponsalPropioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalPropioKeyReleased
+        // TODO add your handling code here:
+        if (txtCorresponsalPropio.getText().length() >= 11) {
+            txtCorresponsalPropio.setText(txtCorresponsalPropio.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtCorresponsalPropioKeyReleased
+
+    private void txtCuentaCorresponsalPropioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaCorresponsalPropioKeyPressed
+        // TODO add your handling code here:
+        if (txtCuentaCorresponsalPropio.getText().length() >= 35) {
+            txtCuentaCorresponsalPropio.setText(txtCuentaCorresponsalPropio.getText().substring(0, 35));
+        }
+    }//GEN-LAST:event_txtCuentaCorresponsalPropioKeyPressed
+
+    private void txtCuentaCorresponsalPropioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaCorresponsalPropioKeyReleased
+        // TODO add your handling code here:
+        if (txtCuentaCorresponsalPropio.getText().length() >= 35) {
+            txtCuentaCorresponsalPropio.setText(txtCuentaCorresponsalPropio.getText().substring(0, 35));
+        }
+    }//GEN-LAST:event_txtCuentaCorresponsalPropioKeyReleased
+
+    private void txtCorresponsalAjenoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalAjenoKeyPressed
+        // TODO add your handling code here:
+        if (txtCorresponsalAjeno.getText().length() >= 11) {
+            txtCorresponsalAjeno.setText(txtCorresponsalAjeno.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtCorresponsalAjenoKeyPressed
+
+    private void txtCorresponsalAjenoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalAjenoKeyReleased
+        // TODO add your handling code here:
+        if (txtCorresponsalAjeno.getText().length() >= 11) {
+            txtCorresponsalAjeno.setText(txtCorresponsalAjeno.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtCorresponsalAjenoKeyReleased
+
+    private void txtCuentaCorresponsalAjenoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaCorresponsalAjenoKeyPressed
+        // TODO add your handling code here:
+        if (txtCuentaCorresponsalAjeno.getText().length() >= 35) {
+            txtCuentaCorresponsalAjeno.setText(txtCuentaCorresponsalAjeno.getText().substring(0, 35));
+        }
+    }//GEN-LAST:event_txtCuentaCorresponsalAjenoKeyPressed
+
+    private void txtCuentaCorresponsalAjenoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaCorresponsalAjenoKeyReleased
+        // TODO add your handling code here:
+        if (txtCuentaCorresponsalAjeno.getText().length() >= 35) {
+            txtCuentaCorresponsalAjeno.setText(txtCuentaCorresponsalAjeno.getText().substring(0, 35));
+        }
+    }//GEN-LAST:event_txtCuentaCorresponsalAjenoKeyReleased
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -388,28 +555,24 @@ public static void main(String args[]) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Altaordenes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Altaordenes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Altaordenes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Altaordenes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -422,7 +585,7 @@ public static void main(String args[]) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboMensaje;
     private javax.swing.JComboBox<String> jComboSentido;

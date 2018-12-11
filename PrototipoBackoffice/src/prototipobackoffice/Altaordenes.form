@@ -72,7 +72,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -182,7 +182,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -250,6 +250,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBICContrapartida">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBICContrapartidaKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBICContrapartidaKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -269,6 +273,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDivisa">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDivisaKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDivisaKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -316,12 +324,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnAceptar">
       <Properties>
         <Property name="text" type="java.lang.String" value="ACEPTAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
@@ -398,8 +406,16 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCorresponsalPropio">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCorresponsalPropioKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCorresponsalPropioKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCuentaCorresponsalPropio">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCuentaCorresponsalPropioKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCuentaCorresponsalPropioKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -455,8 +471,16 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="txtCorresponsalAjeno">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCorresponsalAjenoKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCorresponsalAjenoKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCuentaCorresponsalAjeno">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCuentaCorresponsalAjenoKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCuentaCorresponsalAjenoKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>

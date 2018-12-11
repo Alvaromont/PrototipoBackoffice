@@ -64,6 +64,10 @@ public class Orden {
         this.Mensajes_recibidos = Mensajes_recibidos;
     }
 
+    Orden(String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId_orden() {
         return id_orden;
     }
