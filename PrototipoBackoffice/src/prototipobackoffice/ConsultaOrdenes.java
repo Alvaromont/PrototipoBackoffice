@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConsultaOrdenes extends javax.swing.JFrame {
 
-    Orden orden;
+    Orden ordenSeleccionada;
 
     /**
      * Creates new form ConsultaOrdenes
@@ -30,21 +30,33 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     }
 
     public void llenarLista(String nombreBusqueda) {
+        //Falta añadir el ListarTodos en el DAO
+        //Falta añadir el atributo TRN y sus getter y setter  en la clase Orden.
         BackofficeDao dao = new BackofficeDao();
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new Object[]{"id", "nombre", "precio", "unidades"});
-//        List<Orden> ordenes = dao.listaTodas(nombreBusqueda);
+        dtm.setColumnIdentifiers(new Object[]{"Tipo de Orden", "Ref. Orden", "Contrapartida", "Sentido", "Importe", "Divisa", "Fecha entrada", "Fecha valor", "Fecha liquidacion", "Estado", "TRN", "Corresponsal propio", "Cuenta corresponsal propio"});
+        List<Orden> ordenes = dao.listarTodos(nombreBusqueda);
 
         TablaConsultaOrden.setModel(dtm);
 
-//        for (Orden m : ordenes) {
-//            Object[] o = new Object[4];
-//            //o[0] = m.getId();
-//            //o[1] = m.getNombre();
-//            //o[2] = m.getPrecio();
-//            //o[3] = m.getUnidades();
-//            dtm.addRow(o);
-//        }
+        for (Orden m : ordenes) {
+            Object[] o = new Object[4];
+            o[0] = m.getTipo_Orden();
+            o[1] = m.getRef_Orden();
+            o[2] = m.getContrapartida();
+            o[3] = m.getSentido();
+            o[4] = m.getImporte();
+            o[5] = m.getDivisa();
+            o[6] = m.getFecha_Entrada();
+            o[7] = m.getFecha_Valor();
+            o[8] = m.getFecha_Liquidacion();
+            o[9] = m.getEstado();
+            o[10] = m.getTRN();
+            o[11] = m.getCorresponsal_Propio();
+            o[12] = m.getCuenta_Corresponsal_Propio();
+
+            dtm.addRow(o);
+        }
         dao.closeConnection();
     }
 
@@ -79,8 +91,6 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtBICEntidad = new javax.swing.JTextField();
-        txtEstadoOrden = new javax.swing.JTextField();
-        txtSentido = new javax.swing.JTextField();
         txtImporteDesde = new javax.swing.JTextField();
         txtRefOrden = new javax.swing.JTextField();
         txtCorresponsalPropio = new javax.swing.JTextField();
@@ -94,6 +104,8 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         dateChooserCombo6 = new datechooser.beans.DateChooserCombo();
         jLabel16 = new javax.swing.JLabel();
         btnBusqueda = new javax.swing.JButton();
+        comboEstado = new javax.swing.JComboBox<>();
+        comboSentido = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,6 +188,24 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
 
         jLabel15.setText("Corresponsal Propio:");
 
+        txtBICEntidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBICEntidadKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBICEntidadKeyReleased(evt);
+            }
+        });
+
+        txtDivisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDivisaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDivisaKeyReleased(evt);
+            }
+        });
+
         jLabel16.setText("TODOS LOS CAMPOS SON OBLIGATORIOS.");
 
         btnBusqueda.setText("LANZAR BUSQUEDA");
@@ -185,48 +215,50 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
             }
         });
 
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "no liberada", "liberada", "ack", "incidencia", "liquidada" }));
+
+        comboSentido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cobro", "Pago" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dateChooserCombo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(104, 104, 104)
-                                .addComponent(txtBICEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(63, 63, 63)
-                                .addComponent(txtEstadoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(125, 125, 125)
-                                .addComponent(txtSentido, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(86, 86, 86)
-                                .addComponent(txtImporteDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dateChooserCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(39, 39, 39)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dateChooserCombo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(104, 104, 104)
+                                    .addComponent(txtBICEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dateChooserCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel3))
+                                    .addGap(86, 86, 86)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtImporteDesde)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(comboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addComponent(comboSentido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addComponent(jLabel13)
@@ -268,7 +300,11 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,9 +333,9 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
-                                    .addComponent(txtEstadoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSentido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(3, 3, 3)
+                                .addComponent(comboSentido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtImporteDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -374,62 +410,60 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private void btnLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarActionPerformed
         // TODO add your handling code here:
         BackofficeDao dao = new BackofficeDao();
-        dao.LiberarOrden(orden);
+        dao.LiberarOrden(ordenSeleccionada);
     }//GEN-LAST:event_btnLiberarActionPerformed
 
     private void TablaConsultaOrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaConsultaOrdenMouseClicked
-        // TODO add your handling code here:
+        // Cuando seleccionamos una fila de la tabla, cogemos su ref_Orden, y con el metodo getOrden tenemos la orden completa
+        //liberarla o lo que corresponda
         int row = TablaConsultaOrden.getSelectedRow();
-        Date Fecha_Valor;
-        Date Fecha_Entrada;
-        Date Fecha_Liquidacion;
         String Ref_Orden = TablaConsultaOrden.getModel().getValueAt(row, 1).toString();
-        String Contrapartida = TablaConsultaOrden.getModel().getValueAt(row, 2).toString();
-        String Sentido = TablaConsultaOrden.getModel().getValueAt(row, 3).toString();
-        double Importe = Double.parseDouble(TablaConsultaOrden.getModel().getValueAt(row, 4).toString());
-        String Divisa = TablaConsultaOrden.getModel().getValueAt(row, 5).toString();
-
-        try {
-            String FechaAux = TablaConsultaOrden.getModel().getValueAt(row, 6).toString();
-            String FechaAux1 = TablaConsultaOrden.getModel().getValueAt(row, 7).toString();
-            String FechaAux2 = TablaConsultaOrden.getModel().getValueAt(row, 8).toString();
-
-            Fecha_Valor = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").parse(FechaAux);
-            Fecha_Entrada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").parse(FechaAux1);
-            Fecha_Liquidacion = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").parse(FechaAux2);
-        } catch (ParseException ex) {
-            Logger.getLogger(ConsultaOrdenes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        String Estado = TablaConsultaOrden.getModel().getValueAt(row, 9).toString();
-        String TRN = TablaConsultaOrden.getModel().getValueAt(row, 10).toString();
-        String Corresponsal_Propio = TablaConsultaOrden.getModel().getValueAt(row, 11).toString();
-        String Cuenta_Corresponsal_Propio = TablaConsultaOrden.getModel().getValueAt(row, 12).toString();
-
-        //COLUMNAS QUE ESTARAN OCULTAS PERO QUE NECESITAMOS
-        long id_orden = Long.parseLong(TablaConsultaOrden.getModel().getValueAt(row, 13).toString());
-        String BIC_Entidad = TablaConsultaOrden.getModel().getValueAt(row, 14).toString();
-        String BIC_Contrapartida = TablaConsultaOrden.getModel().getValueAt(row, 15).toString();
-        String Corresponsal_Ajeno = TablaConsultaOrden.getModel().getValueAt(row, 16).toString();
-        String Cuenta_Corresponsal_Ajeno = TablaConsultaOrden.getModel().getValueAt(row, 17).toString();
-        String Tipo_Mensaje = TablaConsultaOrden.getModel().getValueAt(row, 18).toString();
-
-        //this.orden = new Orden(id_orden, BIC_Entidad, Ref_Orden, Contrapartida, BIC_Contrapartida, Sentido, Importe, Divisa, Fecha_Valor, Fecha_Entrada, Fecha_Liquidacion, Corresponsal_Propio, Cuenta_Corresponsal_Propio, Corresponsal_Ajeno, Cuenta_Corresponsal_Ajeno, Tipo_Mensaje);
+        BackofficeDao dao = new BackofficeDao();
+        //Falta añadir este getOrden en el DAO
+        ordenSeleccionada = dao.getOrden(Ref_Orden);
 
     }//GEN-LAST:event_TablaConsultaOrdenMouseClicked
 
     private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
         //si clicko en este boton se lanzara la busqueda correspondiente
-            //String nombreBusqueda = txtBusqueda.getText();
-            //Llamando al metodo del dao que corresponda.
-            //dao.busqueda(nombreBusqueda);
+        //String nombreBusqueda = txtBusqueda.getText();
+        //Llamando al metodo del dao que corresponda.
+        //dao.busqueda(nombreBusqueda);
     }//GEN-LAST:event_btnBusquedaActionPerformed
 
     private void btnConsultarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMensajesActionPerformed
-        ConsultaComunicaciones p2 = new ConsultaComunicaciones ();
+        ConsultaComunicaciones p2 = new ConsultaComunicaciones();
         p2.setLocationRelativeTo(this);
         p2.setVisible(true);
     }//GEN-LAST:event_btnConsultarMensajesActionPerformed
+
+    private void txtBICEntidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBICEntidadKeyPressed
+        // TODO add your handling code here:
+        if (txtBICEntidad.getText().length() >= 11) {
+            txtBICEntidad.setText(txtBICEntidad.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtBICEntidadKeyPressed
+
+    private void txtBICEntidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBICEntidadKeyReleased
+        // TODO add your handling code here:
+        if (txtBICEntidad.getText().length() >= 11) {
+            txtBICEntidad.setText(txtBICEntidad.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtBICEntidadKeyReleased
+
+    private void txtDivisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyPressed
+        // TODO add your handling code here:
+        if (txtDivisa.getText().length() >= 3) {
+            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
+        }
+    }//GEN-LAST:event_txtDivisaKeyPressed
+
+    private void txtDivisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyReleased
+        // TODO add your handling code here:
+         if (txtDivisa.getText().length() >= 3) {
+            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
+        }
+    }//GEN-LAST:event_txtDivisaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -473,6 +507,8 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private javax.swing.JButton btnLiberar;
     private javax.swing.JButton btnLiquidarManual;
     private javax.swing.JButton btnNuevaOrden;
+    private javax.swing.JComboBox<String> comboEstado;
+    private javax.swing.JComboBox<String> comboSentido;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private datechooser.beans.DateChooserCombo dateChooserCombo2;
     private datechooser.beans.DateChooserCombo dateChooserCombo3;
@@ -499,10 +535,8 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private javax.swing.JTextField txtBICEntidad;
     private javax.swing.JTextField txtCorresponsalPropio;
     private javax.swing.JTextField txtDivisa;
-    private javax.swing.JTextField txtEstadoOrden;
     private javax.swing.JTextField txtImporteDesde;
     private javax.swing.JTextField txtImporteHasta;
     private javax.swing.JTextField txtRefOrden;
-    private javax.swing.JTextField txtSentido;
     // End of variables declaration//GEN-END:variables
 }

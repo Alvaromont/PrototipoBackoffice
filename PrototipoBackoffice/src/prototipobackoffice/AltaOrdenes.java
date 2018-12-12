@@ -390,7 +390,7 @@ public class AltaOrdenes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // ESTARIA COMPLETO PERO NO COGE BIEN LA FECHA ACTUA, METE EN TODOS LOS CAMPOS LOS SELECCIONADOS PARA LA FECHA VALOR
+        
         try {
             String bic_Entidad = "BSCHESMMXXX";
             String tipo_Orden = "Individual";
@@ -413,6 +413,7 @@ public class AltaOrdenes extends javax.swing.JFrame {
             Orden ordenInsertar = new Orden(bic_Entidad, tipo_Orden, ref_Orden, contrapartida, sentido, importe, divisa, fecha_Entrada, fecha_Valor, fecha_Liquidacion, fecha_liberacion, corresponsal_Propio, cuenta_Corresponsal_Propio, bic_Contrapartida, corresponsal_Ajeno, cuenta_Corresponsal_Ajeno, tipo_Mensaje);
 
             new BackofficeDao().insertarOrden(ordenInsertar);
+            dispose();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El campo importe debe contener un valor estrictamente numerico", "ATENCION", JOptionPane.ERROR_MESSAGE);
         }
