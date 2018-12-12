@@ -13,30 +13,29 @@ import java.util.Date;
  */
 public class Orden {
 
-    String Tipo_Orden;
-    String ref_Orden;
-    String contrapartida;
-    String sentido;
-    double importe;
-    String divisa;
-    Date fecha_Entrada;
-    Date fecha_Valor;
-    Date fecha_Liquidacion;
-    Date fecha_liberacion;
-    String estado = "No liberada";
-    String corresponsal_Propio;
-    String cuenta_Corresponsal_Propio;
-    int id_orden;
-    String bic_Entidad;
-    String bic_Contrapartida;
-    String corresponsal_Ajeno;
-    String cuenta_Corresponsal_Ajeno;
-    String tipo_Mensaje;
-    
+    private String Tipo_Orden = "Individual";
+    private String ref_Orden;
+    private String contrapartida;
+    private String sentido;
+    private double importe;
+    private String divisa;
+    private Date fecha_Entrada;
+    private Date fecha_Valor;
+    private Date fecha_Liquidacion;
+    private Date fecha_liberacion;
+    private String estado = "No liberada";
+    private String corresponsal_Propio;
+    private String cuenta_Corresponsal_Propio;
+    private int id_orden;
+    private String bic_Entidad;
+    private String bic_Contrapartida;
+    private String corresponsal_Ajeno;
+    private String cuenta_Corresponsal_Ajeno;
+    private String tipo_Mensaje;
+    private String trn_orden;
 
-    
-    int Mensajes_emitidos;
-    int Mensajes_recibidos;
+    private int Mensajes_emitidos;
+    private int Mensajes_recibidos;
 
     public Orden() {
     }
@@ -64,8 +63,39 @@ public class Orden {
         this.Mensajes_recibidos = Mensajes_recibidos;
     }
 
-    Orden(String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Orden(String tipo_orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, String estado, String trn_orden, String corresponsal_Propio, String cuenta_Corresponsal_Propio) {
+        this.ref_Orden = ref_Orden;
+        this.contrapartida = contrapartida;
+        this.sentido = sentido;
+        this.importe = importe;
+        this.divisa = divisa;
+        this.fecha_Entrada = fecha_Entrada;
+        this.fecha_Valor = fecha_Valor;
+        this.fecha_Liquidacion = fecha_Liquidacion;
+        this.corresponsal_Propio = corresponsal_Propio;
+        this.cuenta_Corresponsal_Propio = cuenta_Corresponsal_Propio;
+        this.trn_orden = trn_orden;
+        this.Tipo_Orden = tipo_orden;
+        this.estado = estado;
+    }
+
+    public Orden(String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
+        this.ref_Orden = ref_Orden;
+        this.bic_Entidad = bic_Entidad;
+        this.contrapartida = contrapartida;
+        this.sentido = sentido;
+        this.importe = importe;
+        this.divisa = divisa;
+        this.fecha_Entrada = fecha_Entrada;
+        this.fecha_Valor = fecha_Valor;
+        this.fecha_Liquidacion = fecha_Liquidacion;
+        this.fecha_liberacion = fecha_liberacion;
+        this.corresponsal_Propio = corresponsal_Propio;
+        this.cuenta_Corresponsal_Propio = cuenta_Corresponsal_Propio;
+        this.bic_Contrapartida = bic_Contrapartida;
+        this.corresponsal_Ajeno = corresponsal_Ajeno;
+        this.cuenta_Corresponsal_Ajeno = cuenta_Corresponsal_Ajeno;
+        this.tipo_Mensaje = tipo_Mensaje;
     }
 
     public int getId_orden() {
@@ -234,6 +264,14 @@ public class Orden {
 
     public void setMensajes_recibidos(int Mensajes_recibidos) {
         this.Mensajes_recibidos = Mensajes_recibidos;
+    }
+
+    public String getTrn_orden() {
+        return trn_orden;
+    }
+
+    public void setTrn_orden(String trn_orden) {
+        this.trn_orden = trn_orden;
     }
 
     @Override

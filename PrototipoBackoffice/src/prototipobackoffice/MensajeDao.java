@@ -152,7 +152,7 @@ public class MensajeDao {
             stmt.setString(1, m.getTipoMensaje());      //-------------------------------------------------------------------------------------------------------
             stmt.setString(2, m.getEstadoCruce());
             stmt.setString(3, orden.getRef_Orden() + "." + cantidad);//TRN LO CALCULAMOS DEBAJO
-            stmt.setInt(4, orden.getId_orden());//TRN LO CALCULAMOS DEBAJO
+            stmt.setInt(4, orden.getId_orden());
 
             //ejecuta
             stmt.execute();

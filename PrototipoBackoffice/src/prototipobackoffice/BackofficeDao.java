@@ -6,13 +6,12 @@
 package prototipobackoffice;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
-import sun.swing.BakedArrayList;
 
 /**
  *
@@ -31,12 +30,11 @@ public class BackofficeDao {
 //    public static void main(String[] ars) {
 //        new BackofficeDao().insertarOrden(new Orden("Individual"," ","bbva", "PAGO", 0, "EUR",new java.util.Date(), new java.util.Date(), new java.util.Date(), new java.util.Date(), "jorge", "123456789",0, "BS99090", "BBVABIC","Alvaro", "12345678", "MT202"));
 //    }
-
     public void insertarOrden(Orden orden) {
 
-        String sql = "insert into ordenes(id_orden, BIC_entidad, ref_orden, contrapartida,BIC_contrapartida,sentido, importe, "
+        String sql = "insert into ordenes(id_orden, tipo_orden,BIC_entidad, ref_orden, contrapartida,BIC_contrapartida,sentido, importe, "
                           + "divisa, fecha_entrada,fecha_valor, fecha_liberacion ,fecha_liquidacion, corresponsal_propio,cuenta_corresponsal_propio,"
-                          + "corresponsal_ajeno, cuenta_corresponsal_ajeno, tipo_mensaje, estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                          + "corresponsal_ajeno, cuenta_corresponsal_ajeno, tipo_mensaje, estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             // prepared statement para insertar con la conexion
             PreparedStatement stmt = this.connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -44,23 +42,24 @@ public class BackofficeDao {
 
             //setear los valores
             stmt.setInt(1, orden.getId_orden());
-            stmt.setString(2, orden.getBic_Entidad());      //-------------------------------------------------------------------------------------------------------
-            stmt.setString(3, ""); //LO CALCULAMOS DEBAJO
-            stmt.setString(4, orden.getContrapartida());
-            stmt.setString(5, orden.getBic_Contrapartida());
-            stmt.setString(6, orden.getSentido());
-            stmt.setDouble(7, orden.getImporte());
-            stmt.setString(8, orden.getDivisa());
-            stmt.setString(9, sdf.format(orden.getFecha_Entrada()));
-            stmt.setString(10, sdf.format(orden.getFecha_Valor()));
+            stmt.setString(2, orden.getTipo_Orden());
+            stmt.setString(3, orden.getBic_Entidad());      //-------------------------------------------------------------------------------------------------------
+            stmt.setString(4, ""); //LO CALCULAMOS DEBAJO
+            stmt.setString(5, orden.getContrapartida());
+            stmt.setString(6, orden.getBic_Contrapartida());
+            stmt.setString(7, orden.getSentido());
+            stmt.setDouble(8, orden.getImporte());
+            stmt.setString(9, orden.getDivisa());
+            stmt.setString(10, sdf.format(orden.getFecha_Entrada()));
             stmt.setString(11, sdf.format(orden.getFecha_Valor()));
             stmt.setString(12, sdf.format(orden.getFecha_Valor()));
-            stmt.setString(13, orden.getCorresponsal_Propio());
-            stmt.setString(14, orden.getCuenta_Corresponsal_Propio());
-            stmt.setString(15, orden.getCorresponsal_Ajeno());
-            stmt.setString(16, orden.getCuenta_Corresponsal_Ajeno());
-            stmt.setString(17, orden.getTipo_Mensaje());
-            stmt.setString(18, orden.getEstado());
+            stmt.setString(13, sdf.format(orden.getFecha_Valor()));
+            stmt.setString(14, orden.getCorresponsal_Propio());
+            stmt.setString(15, orden.getCuenta_Corresponsal_Propio());
+            stmt.setString(16, orden.getCorresponsal_Ajeno());
+            stmt.setString(17, orden.getCuenta_Corresponsal_Ajeno());
+            stmt.setString(18, orden.getTipo_Mensaje());
+            stmt.setString(19, orden.getEstado());
 
             //ejecuta
             stmt.execute();
@@ -137,6 +136,95 @@ public class BackofficeDao {
         }
 
     }
+
+    public ArrayList<Orden> listarTodos(String ref_Orden) {
+        ArrayList<Orden> ordenes = new ArrayList<>();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //conexion con la base y el statement
+            PreparedStatement stmt = this.connection.prepareStatement("Select * from ordenes where ref_orden like '%" + ref_Orden + "%'");
+
+            //ejecuta un select
+            ResultSet rs = stmt.executeQuery();
+
+            //itera en el resulset 
+            while (rs.next()) {
+                int id = rs.getInt("id_orden");
+                String tipoOrden = rs.getString("tipo_orden");
+                String refOrden = rs.getString("ref_orden");
+                String contrapartida = rs.getString("contrapartida");
+                String sentido = rs.getString("sentido");
+                double importe = rs.getDouble("importe");
+                String divisa = rs.getString("divisa");
+                java.util.Date fechaEntrada = sdf.parse(rs.getString("fecha_entrada"));
+                java.util.Date fechaValor = sdf.parse(rs.getString("fecha_valor"));
+                java.util.Date fechaLiquidacion = sdf.parse(rs.getString("fecha_liquidacion"));
+                String estado = rs.getString("estado");
+                String TRN = obtnerTRN("select TRN from mensaje where id_orden = " + id + " order by id_mensaje desc limit 1");
+                String corresponsalPropio = rs.getString("corresponsal_propio");
+                String cuentaCP = rs.getString("cuenta_corresponsal_propio");
+
+                Orden orden = new Orden(tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
+                                  fechaLiquidacion, estado, TRN, corresponsalPropio, cuentaCP);
+                ordenes.add(orden);
+
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException | ParseException e) {
+            e.printStackTrace();
+        }
+        return ordenes;
+    }
+
+    public Orden getOrden(String ref_orden) {
+        Orden orden = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //conexion con la base y el statement
+            PreparedStatement stmt = this.connection.prepareStatement("Select * from ordenes where ref_orden like '%" + ref_orden + "%'");
+
+            //ejecuta un select
+            ResultSet rs = stmt.executeQuery();
+
+            //itera en el resulset 
+            while (rs.next()) {
+                int idOrden = rs.getInt("id_orden");
+                String tipoOrden = rs.getString("tipo_orden");
+                String refOrden = rs.getString("ref_orden");
+                String contrapartida = rs.getString("contrapartida");
+                String sentido = rs.getString("sentido");
+                double importe = rs.getDouble("importe");
+                String divisa = rs.getString("divisa");
+                java.util.Date fechaEntrada = sdf.parse(rs.getString("fecha_entrada"));
+                java.util.Date fechaValor = sdf.parse(rs.getString("fecha_valor"));
+                java.util.Date fechaLiquidacion = sdf.parse(rs.getString("fecha_liquidacion"));
+                java.util.Date fechaLiberacion = sdf.parse(rs.getString("fecha_liberacion"));
+                String estado = rs.getString("estado");
+                String TRN = obtnerTRN("select TRN from mensaje where id_orden = " + idOrden + " order by id_mensaje desc limit 1");
+                String corresponsalPropio = rs.getString("corresponsal_propio");
+                String cuentaCP = rs.getString("cuenta_corresponsal_propio");
+                String bic_Entidad = rs.getString("bic_entidad");
+                String bic_contrapartida = rs.getString("bic_contrapartida");
+                String corresponsalAjeno = rs.getString("corresponsal_ajeno");
+                String cuentaCA = rs.getString("cuenta_corresponsal_ajeno");
+                String tipoMensaje = rs.getString("tipo_mensaje");
+
+                orden = new Orden(tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
+                                  fechaLiquidacion, fechaLiberacion, corresponsalPropio, cuentaCP, idOrden, bic_Entidad,
+                                  bic_contrapartida, corresponsalAjeno, cuentaCA, tipoMensaje);
+
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException | ParseException e) {
+            e.printStackTrace();
+        } 
+        return orden;
+    }
+
 
     /*
     public void insertarOrden(Orden orden) {
@@ -235,5 +323,20 @@ public class BackofficeDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private String obtnerTRN(String sql) {
+        String trn = "";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                trn = rs.getString("TRN");
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+        }
+        return trn;
     }
 }
