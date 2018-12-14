@@ -79,7 +79,7 @@ public class Orden {
         this.estado = estado;
     }
 
-    public Orden(String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
+    public Orden(String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion,String estado,String TRN, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
         this.ref_Orden = ref_Orden;
         this.bic_Entidad = bic_Entidad;
         this.contrapartida = contrapartida;
@@ -96,6 +96,34 @@ public class Orden {
         this.corresponsal_Ajeno = corresponsal_Ajeno;
         this.cuenta_Corresponsal_Ajeno = cuenta_Corresponsal_Ajeno;
         this.tipo_Mensaje = tipo_Mensaje;
+        this.estado = estado;
+        this.trn_orden = TRN;
+    }
+
+    Orden(String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa,
+                      Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, 
+                      String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno,
+                      String tipo_Mensaje) {
+        this.Tipo_Orden = tipo_Orden;
+        this.ref_Orden = ref_Orden;
+        this.bic_Entidad = bic_Entidad;
+        this.contrapartida = contrapartida;
+        this.sentido = sentido;
+        this.importe = importe;
+        this.divisa = divisa;
+        this.fecha_Entrada = fecha_Entrada;
+        this.fecha_Valor = fecha_Valor;
+        this.fecha_Liquidacion = fecha_Liquidacion;
+        this.fecha_liberacion = fecha_liberacion;
+        this.corresponsal_Propio = corresponsal_Propio;
+        this.cuenta_Corresponsal_Propio = cuenta_Corresponsal_Propio;
+        this.bic_Contrapartida = bic_Contrapartida;
+        this.corresponsal_Ajeno = corresponsal_Ajeno;
+        this.cuenta_Corresponsal_Ajeno = cuenta_Corresponsal_Ajeno;
+        this.tipo_Mensaje = tipo_Mensaje;
+
+
+
     }
 
     public int getId_orden() {

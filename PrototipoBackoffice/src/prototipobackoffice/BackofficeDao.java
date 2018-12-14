@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.JOniException;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -108,10 +110,10 @@ public class BackofficeDao {
 
         if (orden.getSentido().equals("Cobro")) {
             try {
-                PreparedStatement stmt = this.connection.prepareStatement("Update ordenes set estado=?, fecha_liberacion=? where id_orden=?");
+                PreparedStatement stmt = this.connection.prepareStatement("Update ordenes set estado=?, fecha_liberacion=? where ref_orden=?");
                 stmt.setString(1, "ACK");
-                stmt.setString(2, sdf.format(orden.getFecha_Entrada()));
-                stmt.setInt(3, orden.getId_orden());
+                stmt.setString(2, sdf.format(new java.util.Date()));
+                stmt.setString(3, orden.getRef_Orden());
 
                 stmt.execute();
                 stmt.close();
@@ -122,11 +124,11 @@ public class BackofficeDao {
 
         } else if (orden.getSentido().equals("Pago")) {
             try {
-                PreparedStatement stmt = this.connection.prepareStatement("Update ordenes set estado=? where id_orden=?");
+                PreparedStatement stmt = this.connection.prepareStatement("Update ordenes set estado=?, fecha_liberacion=?, tipo_mensaje=? where ref_orden=?");
                 stmt.setString(1, "Liberada");
-                stmt.setString(2, sdf.format(orden.getFecha_Entrada()));
+                stmt.setString(2, sdf.format(new java.util.Date()));
                 stmt.setString(3, "MT202");
-                stmt.setInt(4, orden.getId_orden());
+                stmt.setString(4, orden.getRef_Orden());
                 stmt.execute();
                 stmt.close();
 
@@ -137,14 +139,32 @@ public class BackofficeDao {
 
     }
 
+    public void LiquidarOrdenManual(Orden orden) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            if (orden.getEstado().equals("ACK")) {
+                PreparedStatement stmt = this.connection.prepareStatement("Update ordenes set estado=?, fecha_liquidacion=? where ref_orden=?");
+                stmt.setString(1, "LIQUIDADA");
+                stmt.setString(2, sdf.format(new java.util.Date()));
+                stmt.setString(3, orden.getRef_Orden());
+
+                stmt.execute();
+                stmt.close();
+            }else{
+                JOptionPane.showMessageDialog(null, "NO ES POSIBLE LIBERAR LA ORDEN SELECCIONADA MANUALMENTE");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public ArrayList<Orden> listarTodos(String ref_Orden) {
         ArrayList<Orden> ordenes = new ArrayList<>();
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            //conexion con la base y el statement
-            PreparedStatement stmt = this.connection.prepareStatement("Select * from ordenes where ref_orden like '%" + ref_Orden + "%'");
 
-            //ejecuta un select
+            PreparedStatement stmt = this.connection.prepareStatement("Select * from ordenes where ref_orden like '%" + ref_Orden + "%'");
             ResultSet rs = stmt.executeQuery();
 
             //itera en el resulset 
@@ -167,7 +187,6 @@ public class BackofficeDao {
                 Orden orden = new Orden(tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
                                   fechaLiquidacion, estado, TRN, corresponsalPropio, cuentaCP);
                 ordenes.add(orden);
-
             }
             rs.close();
             stmt.close();
@@ -211,17 +230,16 @@ public class BackofficeDao {
                 String cuentaCA = rs.getString("cuenta_corresponsal_ajeno");
                 String tipoMensaje = rs.getString("tipo_mensaje");
 
-                orden = new Orden(tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
-                                  fechaLiquidacion, fechaLiberacion, corresponsalPropio, cuentaCP, idOrden, bic_Entidad,
-                                  bic_contrapartida, corresponsalAjeno, cuentaCA, tipoMensaje);
-
+                orden = new Orden(bic_Entidad,tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
+                                  fechaLiquidacion, fechaLiberacion,estado, TRN, corresponsalPropio, cuentaCP, bic_contrapartida, 
+                                  corresponsalAjeno, cuentaCA, tipoMensaje);
             }
             rs.close();
             stmt.close();
 
         } catch (SQLException | ParseException e) {
             e.printStackTrace();
-        } 
+        }
         return orden;
     }
 

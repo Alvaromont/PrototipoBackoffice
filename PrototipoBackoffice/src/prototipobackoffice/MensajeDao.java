@@ -8,6 +8,7 @@ package prototipobackoffice;
 import java.sql.*;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,106 +19,130 @@ public class MensajeDao {
 
     private Connection connection;
 
-    public MensajeDao() {
-        this.connection = new ConnectionFactory().getConnection();
-    }
-
-    String generarMensajeMT103(Orden orden) {
+    public void insertarMensajeMT202( Orden orden) {
 
         try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            int cantidad = 0;
+            String bic_entidad, bic_corresponsal_propio;
+            String sqlnumMensaje = "Select count(id_mensaje) cantidad from mensaje where id_orden=" + orden.getId_orden();
 
-        } catch (Exception e) {
+            PreparedStatement stmt = this.connection.prepareStatement(sqlnumMensaje);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                cantidad = rs.getInt("cantidad");
+                cantidad++;
+            }
+            rs.close();
+
+            StringBuffer stbuf = new StringBuffer(orden.getBic_Entidad());
+            stbuf.insert(8, "A");
+            bic_entidad = stbuf.toString();
+
+            stbuf = new StringBuffer(orden.getCorresponsal_Propio());
+            stbuf.insert(8, "A");
+            bic_corresponsal_propio = stbuf.toString();
+
+            String sql = "insert into mensaje(bic_entidad_modificado,sentido_tipo_corresponsal, campo113, campo108, TRN,campo21, "
+                              + "valor_divisa_importe, bic_entidad, bic_cuenta_corresponsal_propio,bic_cuenta_corresponsal_ajeno"
+                              + "bic_cuenta_contrapartida) values (?,?,?,?,?,?,?,?,?,?,?)";
+            // prepared statement para insertar con la conexion
+            stmt = this.connection.prepareStatement(sql);
+
+            //setear los valores
+            stmt.setString(1, bic_entidad);
+            stmt.setString(2, "I" + "202" + bic_corresponsal_propio);
+            stmt.setString(3, "NNES");
+            stmt.setString(4, "MUR" + generarAleatorio());  //CREACION DEL MUR ALEATORIAMENTE
+
+            stmt.setString(5, orden.getRef_Orden() + "." + cantidad);//TRN LO CALCULAMOS DEBAJO
+            stmt.setString(6, "NONREF");
+            stmt.setString(7, sdf.format(orden.getFecha_Valor()) + orden.getDivisa() + orden.getImporte());
+            stmt.setString(8, orden.getBic_Entidad());
+            stmt.setString(9, orden.getCorresponsal_Propio() + orden.getCuenta_Corresponsal_Propio());
+            stmt.setString(10, orden.getCorresponsal_Ajeno() + orden.getCuenta_Corresponsal_Ajeno());
+            if (orden.getBic_Entidad() != null) {
+                stmt.setString(11, orden.getBic_Contrapartida());
+            } else {
+                stmt.setString(11, orden.getCuenta_Corresponsal_Ajeno());  //REVISAR-----------------------------------------------!!!!!!
+            }
+            //ejecuta
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return null;
-
     }
 
-    String generarMensajeMT202(Orden orden) {
-        return "";
-    }
+    public void insertarMensajeMT103(Orden orden) {
 
-    String generarMensajeMT900(Orden orden) {
-        return "";
-    }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            int cantidad = 0;
+            String bic_entidad, bic_corresponsal_propio;
+            String sqlnumMensaje = "Select count(id_mensaje) cantidad from mensaje where id_orden=" + orden.getId_orden();
 
-    String generarMensajeMT910(Orden orden) {
-        return "";
-    }
+            PreparedStatement stmt = this.connection.prepareStatement(sqlnumMensaje);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                cantidad = rs.getInt("cantidad");
+                cantidad++;
+            }
+            rs.close();
 
-    String generarMensaje(Orden orden) {
-        String mensajeResultante;
-        switch (orden.getTipo_Mensaje()) {
+            StringBuffer stbuf = new StringBuffer(orden.getBic_Entidad());
+            stbuf.insert(8, "A");
+            bic_entidad = stbuf.toString();
 
-            case "MT103":
-                mensajeResultante = generarMensajeMT103(orden);
-                break;
+            stbuf = new StringBuffer(orden.getCorresponsal_Propio());
+            stbuf.insert(8, "A");
+            bic_corresponsal_propio = stbuf.toString();
 
-            case "MT202":
-                mensajeResultante = generarMensajeMT202(orden);
-                break;
-            case "MT900":
-                mensajeResultante = generarMensajeMT900(orden);
-                break;
-            case "MT910":
-                mensajeResultante = generarMensajeMT910(orden);
-                break;
+            String sql = "insert into mensaje(bic_entidad_modificado,sentido_tipo_corresponsal, campo113, campo108, TRN,campo23B,campo23E, "
+                              + "valor_divisa_importe, bic_entidad, bic_cuenta_corresponsal_propio,bic_cuenta_corresponsal_ajeno"
+                              + "bic_cuenta_contrapartida, campo71A) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            // prepared statement para insertar con la conexion
+            stmt = this.connection.prepareStatement(sql);
 
-            default:
-                JOptionPane.showMessageDialog(null, "El mensaje recibido no se corresponde con ninguno de los almacenados");
+            //setear los valores
+            stmt.setString(1, bic_entidad);
+            stmt.setString(2, "I" + "103" + bic_corresponsal_propio);
+            stmt.setString(3, "NNES");
+            stmt.setString(4, "MUR" + generarAleatorio() + "STP");  //CREACION DEL MUR ALEATORIAMENTE
 
+            stmt.setString(5, orden.getRef_Orden() + "." + cantidad);//TRN LO CALCULAMOS DEBAJO
+            stmt.setString(6, "CRED");
+            stmt.setString(7, "SDVA");
+            stmt.setString(8, sdf.format(orden.getFecha_Valor()) + orden.getDivisa() + orden.getImporte());
+            stmt.setString(9, orden.getBic_Entidad());
+            stmt.setString(10, orden.getCorresponsal_Propio() + orden.getCuenta_Corresponsal_Propio());
+            stmt.setString(11, orden.getCorresponsal_Ajeno() + orden.getCuenta_Corresponsal_Ajeno());
+            stmt.setString(12, orden.getBic_Contrapartida());
+            stmt.setString(13, "OUR");
+
+            //ejecuta
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        return null;
     }
 
-    String getMensajeMT103() {
-        return null;
-
-    }
-
-    String getMensajeMT202() {
-        return null;
-
-    }
-
-    String getMensajeMT900() {
-        return null;
-
-    }
-
-    String getMensajeMT910() {
-        return null;
-
-    }
-
-    String getMensaje(String tipoMensaje) {
-        String mensajeResultante;
-
-        switch (tipoMensaje) {
-            case "MT103":
-                mensajeResultante = getMensajeMT103();
-                break;
-
-            case "MT202":
-                mensajeResultante = getMensajeMT202();
-                break;
-            case "MT900":
-                mensajeResultante = getMensajeMT900();
-                break;
-            case "MT910":
-                mensajeResultante = getMensajeMT910();
-                break;
-
-            case "ACK":
-                break;
-
-            case "NACK":
-                break;
-
-            default:
-                JOptionPane.showMessageDialog(null, "El mensaje recibido no se corresponde con ninguno de los almacenados");
+    public String generarAleatorio() {
+        // Los caracteres de interés en un array de char.
+        char[] chars = "0123456789ABCDEFGHIJKLMNOPQRSTVWYZ".toCharArray();
+        // Longitud del array de char.
+        int charsLength = chars.length;
+        // Instanciamos la clase Random
+        Random random = new Random();
+        // Un StringBuffer para componer la cadena aleatoria de forma eficiente
+        StringBuffer buffer = new StringBuffer();
+        // Bucle para elegir una cadena de 10 caracteres al azar
+        for (int i = 0; i < 16; i++) {
+            // Añadimos al buffer un caracter al azar del array
+            buffer.append(chars[random.nextInt(charsLength)]);
         }
-        return null;
+        return buffer.toString();
     }
 
     public void closeConnection() {
@@ -129,39 +154,4 @@ public class MensajeDao {
             e.printStackTrace();
         }
     }
-
-    public void insertarMensaje(Mensaje m, Orden orden) {
-
-        try {
-            int cantidad = 0;
-            String sqlnumMensaje = "Select count(id_mensaje) cantidad from mensaje where id_orden=" + orden.getId_orden();
-
-            PreparedStatement stmt = this.connection.prepareStatement(sqlnumMensaje);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                cantidad = rs.getInt("cantidad");
-                cantidad++;
-            }
-            rs.close();
-
-            String sql = "insert into mensaje(tipo_mensaje, estado_cruce, TRN, id_orden) values (?,?,?,?)";
-            // prepared statement para insertar con la conexion
-            stmt = this.connection.prepareStatement(sql);
-
-            //setear los valores
-            stmt.setString(1, m.getTipoMensaje());      //-------------------------------------------------------------------------------------------------------
-            stmt.setString(2, m.getEstadoCruce());
-            stmt.setString(3, orden.getRef_Orden() + "." + cantidad);//TRN LO CALCULAMOS DEBAJO
-            stmt.setInt(4, orden.getId_orden());
-
-            //ejecuta
-            stmt.execute();
-
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 }
