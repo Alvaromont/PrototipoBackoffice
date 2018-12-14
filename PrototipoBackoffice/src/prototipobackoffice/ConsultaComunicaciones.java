@@ -180,12 +180,13 @@ public class ConsultaComunicaciones extends javax.swing.JFrame {
                                     .add(jLabel11)
                                     .add(jLabel1)
                                     .add(jLabel12))))
-                        .add(215, 215, 215)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(btnVerMensaje)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                .add(btnVolver)
-                                .add(16, 16, 16))))
+                            .add(layout.createSequentialGroup()
+                                .add(230, 230, 230)
+                                .add(btnVolver))
+                            .add(layout.createSequentialGroup()
+                                .add(214, 214, 214)
+                                .add(btnVerMensaje))))
                     .add(layout.createSequentialGroup()
                         .add(31, 31, 31)
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 1098, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
@@ -197,11 +198,6 @@ public class ConsultaComunicaciones extends javax.swing.JFrame {
                 .add(27, 27, 27)
                 .add(jLabel1)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(43, 43, 43)
-                        .add(btnVerMensaje)
-                        .add(30, 30, 30)
-                        .add(btnVolver))
                     .add(layout.createSequentialGroup()
                         .add(23, 23, 23)
                         .add(jLabel11)
@@ -242,10 +238,16 @@ public class ConsultaComunicaciones extends javax.swing.JFrame {
                                 .add(18, 18, 18)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(txtTRN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel10))))))
-                .add(14, 14, Short.MAX_VALUE)
-                .add(jLabel12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                                    .add(jLabel10))))
+                        .add(14, 14, Short.MAX_VALUE)
+                        .add(jLabel12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18))
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(btnVerMensaje)
+                        .add(54, 54, 54)
+                        .add(btnVolver)
+                        .add(68, 68, 68)))
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 275, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(42, 42, 42))
         );
@@ -264,6 +266,12 @@ public class ConsultaComunicaciones extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    
+    
+    
+    
+    
+    
     private void btnVerMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMensajeActionPerformed
         // TODO add your handling code here:
         // mostrar el fichero del mensaje correspondiente a la linea seleccionada en el MouseClicked 
