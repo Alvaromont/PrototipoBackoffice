@@ -62,7 +62,7 @@ public class Orden {
         this.Mensajes_recibidos = Mensajes_recibidos;
     }
 
-    Orden(String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
+    public Orden(String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
         this.ref_Orden = ref_Orden;
         this.bic_Entidad = bic_Entidad;
         this.contrapartida = contrapartida;
