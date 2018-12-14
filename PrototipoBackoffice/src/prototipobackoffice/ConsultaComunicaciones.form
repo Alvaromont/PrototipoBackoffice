@@ -53,9 +53,12 @@
                                   <Component id="txtTRN" min="-2" pref="73" max="-2" attributes="0"/>
                                   <Component id="dateFechaValorDesde" min="-2" pref="103" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtTipoMensaje" min="-2" pref="73" max="-2" attributes="0"/>
                                       <Component id="txtImporteDesde" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
                                       <Component id="txtBICEntidad" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="comboTipoMensaje" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
@@ -162,7 +165,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTipoMensaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboTipoMensaje" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -183,7 +186,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="18" max="32767" attributes="0"/>
+              <EmptySpace min="18" pref="14" max="32767" attributes="0"/>
               <Component id="jLabel12" min="-2" pref="16" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
@@ -285,13 +288,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBICEntidad">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BSCHESMMXXX"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tipo mensaje:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtTipoMensaje">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -367,6 +371,21 @@
     <Component class="datechooser.beans.DateChooserCombo" name="dateFechaValorHasta">
     </Component>
     <Component class="datechooser.beans.DateChooserCombo" name="dateFechaValorDesde">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboTipoMensaje">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="202"/>
+            <StringItem index="1" value="103"/>
+            <StringItem index="2" value="900"/>
+            <StringItem index="3" value="910"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

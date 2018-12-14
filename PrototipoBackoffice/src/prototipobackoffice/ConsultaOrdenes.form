@@ -82,12 +82,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtRefOrden" pref="121" max="32767" attributes="0"/>
-                                  <Component id="txtCorresponsalPropio" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtDivisa" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtImporteHasta" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtRefOrden" min="-2" pref="121" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -95,6 +90,7 @@
                                   <Component id="dateChooserCombo6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="dateChooserCombo4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="dateChooserCombo5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtImporteHasta" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -107,7 +103,18 @@
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="comboCorresponsalPropio" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboDivisa" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
@@ -116,15 +123,13 @@
                       <Component id="btnLiberar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                       <Component id="btnLiquidarManual" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                      <Component id="btnConsultarMensajes" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                      <Component id="btnRecibirMensajes" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="383" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+              <Component id="btnConsultarMensajes" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -219,17 +224,19 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Component id="comboCorresponsalPropio" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="comboDivisa" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtImporteHasta" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="txtRefOrden" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtCorresponsalPropio" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Component id="txtDivisa" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtImporteHasta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -239,6 +246,7 @@
                   <Component id="btnLiberar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLiquidarManual" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnConsultarMensajes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRecibirMensajes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="350" max="-2" attributes="0"/>
@@ -458,6 +466,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBICEntidad">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BSCHESMMXXX"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBICEntidadKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBICEntidadKeyReleased"/>
@@ -466,14 +477,6 @@
     <Component class="javax.swing.JTextField" name="txtImporteDesde">
     </Component>
     <Component class="javax.swing.JTextField" name="txtRefOrden">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCorresponsalPropio">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtDivisa">
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDivisaKeyPressed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDivisaKeyReleased"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtImporteHasta">
     </Component>
@@ -524,6 +527,42 @@
           <StringArray count="2">
             <StringItem index="0" value="Cobro"/>
             <StringItem index="1" value="Pago"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRecibirMensajes">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="RECIBIR MENSAJES"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRecibirMensajesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboDivisa">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="EUR"/>
+            <StringItem index="1" value="USD"/>
+            <StringItem index="2" value="CAD"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboCorresponsalPropio">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="BMSXMXMMXXX"/>
+            <StringItem index="1" value="ZYAYESM0XXX"/>
+            <StringItem index="2" value="CITIITMXXXX"/>
           </StringArray>
         </Property>
       </Properties>

@@ -6,6 +6,8 @@
 package prototipobackoffice;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +29,7 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
      */
     public ConsultaOrdenes() {
         initComponents();
+        
     }
 
     public void llenarLista(String nombreBusqueda) {
@@ -93,8 +96,6 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         txtBICEntidad = new javax.swing.JTextField();
         txtImporteDesde = new javax.swing.JTextField();
         txtRefOrden = new javax.swing.JTextField();
-        txtCorresponsalPropio = new javax.swing.JTextField();
-        txtDivisa = new javax.swing.JTextField();
         txtImporteHasta = new javax.swing.JTextField();
         dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
         dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
@@ -106,6 +107,9 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         btnBusqueda = new javax.swing.JButton();
         comboEstado = new javax.swing.JComboBox<>();
         comboSentido = new javax.swing.JComboBox<>();
+        btnRecibirMensajes = new javax.swing.JButton();
+        comboDivisa = new javax.swing.JComboBox<>();
+        comboCorresponsalPropio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,21 +192,13 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
 
         jLabel15.setText("Corresponsal Propio:");
 
+        txtBICEntidad.setText("BSCHESMMXXX");
         txtBICEntidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtBICEntidadKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBICEntidadKeyReleased(evt);
-            }
-        });
-
-        txtDivisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDivisaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDivisaKeyReleased(evt);
             }
         });
 
@@ -218,6 +214,17 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "no liberada", "liberada", "ack", "incidencia", "liquidada" }));
 
         comboSentido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cobro", "Pago" }));
+
+        btnRecibirMensajes.setText("RECIBIR MENSAJES");
+        btnRecibirMensajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecibirMensajesActionPerformed(evt);
+            }
+        });
+
+        comboDivisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "CAD" }));
+
+        comboCorresponsalPropio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BMSXMXMMXXX", "ZYAYESM0XXX", "CITIITMXXXX" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,24 +277,29 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtRefOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(txtCorresponsalPropio)
-                                    .addComponent(txtDivisa)
-                                    .addComponent(txtImporteHasta)))
+                                .addComponent(txtRefOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(dateChooserCombo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dateChooserCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dateChooserCombo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtImporteHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(115, 115, 115)
                                         .addComponent(jLabel16))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(185, 185, 185)
-                                        .addComponent(btnBusqueda))))))
+                                        .addComponent(btnBusqueda))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(comboCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(btnNuevaOrden)
@@ -295,12 +307,11 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                         .addComponent(btnLiberar)
                         .addGap(154, 154, 154)
                         .addComponent(btnLiquidarManual)
-                        .addGap(92, 92, 92)
-                        .addComponent(btnConsultarMensajes))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel1)))
-                .addContainerGap(383, Short.MAX_VALUE))
+                        .addGap(89, 89, 89)
+                        .addComponent(btnRecibirMensajes)))
+                .addGap(92, 92, 92)
+                .addComponent(btnConsultarMensajes)
+                .addGap(127, 127, 127))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1500, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,22 +387,24 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(jLabel13)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jLabel14))))))
+                                            .addComponent(jLabel14))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(comboCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(comboDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtImporteHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(txtRefOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(4, 4, 4)
-                            .addComponent(txtDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtImporteHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(108, 108, 108))))
+                            .addGap(202, 202, 202))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevaOrden)
                     .addComponent(btnLiberar)
                     .addComponent(btnLiquidarManual)
-                    .addComponent(btnConsultarMensajes))
+                    .addComponent(btnConsultarMensajes)
+                    .addComponent(btnRecibirMensajes))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -451,19 +464,18 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBICEntidadKeyReleased
 
-    private void txtDivisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyPressed
+    private void btnRecibirMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecibirMensajesActionPerformed
         // TODO add your handling code here:
-        if (txtDivisa.getText().length() >= 3) {
-            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
-        }
-    }//GEN-LAST:event_txtDivisaKeyPressed
-
-    private void txtDivisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyReleased
-        // TODO add your handling code here:
-         if (txtDivisa.getText().length() >= 3) {
-            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
-        }
-    }//GEN-LAST:event_txtDivisaKeyReleased
+        RecepcionMensajes p2 = new RecepcionMensajes(ordenSeleccionada);
+        p2.setLocationRelativeTo(this);
+        p2.setVisible(true);
+        p2.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    llenarLista("");
+                }
+            });
+    }//GEN-LAST:event_btnRecibirMensajesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -507,6 +519,9 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private javax.swing.JButton btnLiberar;
     private javax.swing.JButton btnLiquidarManual;
     private javax.swing.JButton btnNuevaOrden;
+    private javax.swing.JButton btnRecibirMensajes;
+    private javax.swing.JComboBox<String> comboCorresponsalPropio;
+    private javax.swing.JComboBox<String> comboDivisa;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboSentido;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
@@ -533,8 +548,6 @@ public class ConsultaOrdenes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtBICEntidad;
-    private javax.swing.JTextField txtCorresponsalPropio;
-    private javax.swing.JTextField txtDivisa;
     private javax.swing.JTextField txtImporteDesde;
     private javax.swing.JTextField txtImporteHasta;
     private javax.swing.JTextField txtRefOrden;

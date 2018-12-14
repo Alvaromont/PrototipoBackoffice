@@ -33,14 +33,11 @@ public class AltaOrdenes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtBICEntidad = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtContrapartida = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtBICContrapartida = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtImporte = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtDivisa = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jComboSentido = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
@@ -52,57 +49,37 @@ public class AltaOrdenes extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        txtCorresponsalPropio = new javax.swing.JTextField();
         txtCuentaCorresponsalPropio = new javax.swing.JTextField();
+        comboCorresponsalPropio = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        txtCorresponsalAjeno = new javax.swing.JTextField();
         txtCuentaCorresponsalAjeno = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        comboCorresponsalAjeno = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         txtFechaValor = new datechooser.beans.DateChooserCombo();
+        comboDivisa = new javax.swing.JComboBox<>();
+        comboContrapartida = new javax.swing.JComboBox<>();
+        comboBICContrapartida = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("(*) BIC Entidad:");
 
         txtBICEntidad.setText("BSCHESMMXXX");
-        txtBICEntidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBICEntidadActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("(*) Contrapartida:");
 
         jLabel4.setText("BIC Contrapartida:");
-
-        txtBICContrapartida.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBICContrapartidaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBICContrapartidaKeyReleased(evt);
-            }
-        });
 
         jLabel5.setText("(*) Sentido:");
 
         jLabel6.setText("(*) Importe:");
 
         jLabel7.setText("(*) Divisa:");
-
-        txtDivisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDivisaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDivisaKeyReleased(evt);
-            }
-        });
 
         jLabel8.setText("(*) Fecha valor:");
 
@@ -143,15 +120,6 @@ public class AltaOrdenes extends javax.swing.JFrame {
 
         jLabel18.setText("Cuenta Corresponsal Propio:");
 
-        txtCorresponsalPropio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCorresponsalPropioKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCorresponsalPropioKeyReleased(evt);
-            }
-        });
-
         txtCuentaCorresponsalPropio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCuentaCorresponsalPropioKeyPressed(evt);
@@ -161,45 +129,45 @@ public class AltaOrdenes extends javax.swing.JFrame {
             }
         });
 
+        comboCorresponsalPropio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BMSXMXMMXXX", "ZYAYESM0XXX", "CITIITMXXXX" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCorresponsalPropio, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(txtCuentaCorresponsalPropio))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel17))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel18)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(comboCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(66, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCuentaCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(txtCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCuentaCorresponsalPropio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Corresponsal Propio", jPanel2);
-
-        txtCorresponsalAjeno.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCorresponsalAjenoKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCorresponsalAjenoKeyReleased(evt);
-            }
-        });
 
         txtCuentaCorresponsalAjeno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -214,36 +182,35 @@ public class AltaOrdenes extends javax.swing.JFrame {
 
         jLabel16.setText("Cuenta Corresponsal Ajeno:");
 
+        comboCorresponsalAjeno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MGTCBEBEXXX", "MGTCBEBEECL", "CITIUS33XXX" }));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCorresponsalAjeno, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(txtCuentaCorresponsalAjeno))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCuentaCorresponsalAjeno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboCorresponsalAjeno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(txtCorresponsalAjeno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel15)))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(comboCorresponsalAjeno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCuentaCorresponsalAjeno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Corresponsal Ajeno", jPanel3);
@@ -251,6 +218,18 @@ public class AltaOrdenes extends javax.swing.JFrame {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabel9.setText("Los campos marcados con (*) son obligatorios.");
+
+        comboDivisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUR", "USD", "CAD" }));
+
+        comboContrapartida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Bilbao Vizcaya Argentaria", "ABBEY NATIONAL TREASURY SERVICES PLC", "Carrefour supermercados" }));
+        comboContrapartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboContrapartidaActionPerformed(evt);
+            }
+        });
+
+        comboBICContrapartida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BBVAESMMXXX", "ABBYGB2LXXX", "" }));
+        comboBICContrapartida.setSelectedIndex(comboContrapartida.getSelectedIndex());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -276,17 +255,17 @@ public class AltaOrdenes extends javax.swing.JFrame {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtImporte, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                                    .addComponent(txtDivisa)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtFechaValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtBICEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboSentido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jComboSentido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,22 +283,26 @@ public class AltaOrdenes extends javax.swing.JFrame {
                                         .addComponent(jButton2)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jComboMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(88, 88, 88))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(73, 73, 73)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addGap(93, 93, 93)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtContrapartida, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                                            .addComponent(txtBICContrapartida)))
-                                    .addComponent(jLabel9))
+                                        .addComponent(jLabel4)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(comboBICContrapartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel3)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(comboContrapartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
@@ -332,19 +315,26 @@ public class AltaOrdenes extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBICEntidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(txtContrapartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtBICContrapartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBICEntidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(5, 5, 5)))
+                                .addGap(6, 6, 6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboContrapartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(16, 16, 16))
+                            .addComponent(comboBICContrapartida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
@@ -375,7 +365,7 @@ public class AltaOrdenes extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
-                                    .addComponent(txtDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(comboDivisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8)
@@ -395,18 +385,18 @@ public class AltaOrdenes extends javax.swing.JFrame {
             String bic_Entidad = "BSCHESMMXXX";
             String tipo_Orden = "Individual";
             String ref_Orden = "";
-            String contrapartida = txtContrapartida.getText();
-            String bic_Contrapartida = txtBICContrapartida.getText();
+            String contrapartida = comboContrapartida.getSelectedItem().toString();
+            String bic_Contrapartida = comboBICContrapartida.getSelectedItem().toString();
             String sentido = jComboSentido.getSelectedItem().toString();
             double importe = Double.parseDouble(txtImporte.getText());
-            String divisa = txtDivisa.getText();
+            String divisa = comboDivisa.getSelectedItem().toString();
             Date fecha_Entrada = new java.util.Date();
             Date fecha_Valor = new Date(txtFechaValor.getSelectedDate().getTimeInMillis());
             Date fecha_liberacion = new Date(txtFechaValor.getSelectedDate().getTimeInMillis());
             Date fecha_Liquidacion = new Date(txtFechaValor.getSelectedDate().getTimeInMillis());
-            String corresponsal_Propio = txtCorresponsalPropio.getText();
+            String corresponsal_Propio = comboCorresponsalPropio.getSelectedItem().toString();
             String cuenta_Corresponsal_Propio = txtCuentaCorresponsalPropio.getText();
-            String corresponsal_Ajeno = txtCorresponsalAjeno.getText();
+            String corresponsal_Ajeno = comboCorresponsalAjeno.getSelectedItem().toString();
             String cuenta_Corresponsal_Ajeno = txtCuentaCorresponsalAjeno.getText();
             String tipo_Mensaje = jComboMensaje.getSelectedItem().toString();
             String estado = "No liberada";
@@ -435,59 +425,14 @@ public class AltaOrdenes extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        txtBICContrapartida.setText("");
+        
         txtBICEntidad.setText("BSCHESMMXXX");
-        txtContrapartida.setText("");
-        txtCorresponsalAjeno.setText("");
-        txtCorresponsalPropio.setText("");
+       
         txtCuentaCorresponsalAjeno.setText("");
         txtCuentaCorresponsalPropio.setText("");
-        txtDivisa.setText("");
         txtFechaValor.setText("");
         txtImporte.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txtDivisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyPressed
-        // TODO add your handling code here:
-        if (txtDivisa.getText().length() >= 3) {
-            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
-        }
-    }//GEN-LAST:event_txtDivisaKeyPressed
-
-    private void txtDivisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDivisaKeyReleased
-        // TODO add your handling code here:
-        if (txtDivisa.getText().length() >= 3) {
-            txtDivisa.setText(txtDivisa.getText().substring(0, 3));
-        }
-    }//GEN-LAST:event_txtDivisaKeyReleased
-
-    private void txtBICContrapartidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBICContrapartidaKeyPressed
-        // TODO add your handling code here:
-        if (txtBICContrapartida.getText().length() >= 11) {
-            txtBICContrapartida.setText(txtBICContrapartida.getText().substring(0, 11));
-        }
-    }//GEN-LAST:event_txtBICContrapartidaKeyPressed
-
-    private void txtBICContrapartidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBICContrapartidaKeyReleased
-        // TODO add your handling code here:
-        if (txtBICContrapartida.getText().length() >= 11) {
-            txtBICContrapartida.setText(txtBICContrapartida.getText().substring(0, 11));
-        }
-    }//GEN-LAST:event_txtBICContrapartidaKeyReleased
-
-    private void txtCorresponsalPropioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalPropioKeyPressed
-        // TODO add your handling code here:
-        if (txtCorresponsalPropio.getText().length() >= 11) {
-            txtCorresponsalPropio.setText(txtCorresponsalPropio.getText().substring(0, 11));
-        }
-    }//GEN-LAST:event_txtCorresponsalPropioKeyPressed
-
-    private void txtCorresponsalPropioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalPropioKeyReleased
-        // TODO add your handling code here:
-        if (txtCorresponsalPropio.getText().length() >= 11) {
-            txtCorresponsalPropio.setText(txtCorresponsalPropio.getText().substring(0, 11));
-        }
-    }//GEN-LAST:event_txtCorresponsalPropioKeyReleased
 
     private void txtCuentaCorresponsalPropioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaCorresponsalPropioKeyPressed
         // TODO add your handling code here:
@@ -503,20 +448,6 @@ public class AltaOrdenes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCuentaCorresponsalPropioKeyReleased
 
-    private void txtCorresponsalAjenoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalAjenoKeyPressed
-        // TODO add your handling code here:
-        if (txtCorresponsalAjeno.getText().length() >= 11) {
-            txtCorresponsalAjeno.setText(txtCorresponsalAjeno.getText().substring(0, 11));
-        }
-    }//GEN-LAST:event_txtCorresponsalAjenoKeyPressed
-
-    private void txtCorresponsalAjenoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorresponsalAjenoKeyReleased
-        // TODO add your handling code here:
-        if (txtCorresponsalAjeno.getText().length() >= 11) {
-            txtCorresponsalAjeno.setText(txtCorresponsalAjeno.getText().substring(0, 11));
-        }
-    }//GEN-LAST:event_txtCorresponsalAjenoKeyReleased
-
     private void txtCuentaCorresponsalAjenoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaCorresponsalAjenoKeyPressed
         // TODO add your handling code here:
         if (txtCuentaCorresponsalAjeno.getText().length() >= 35) {
@@ -531,9 +462,12 @@ public class AltaOrdenes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCuentaCorresponsalAjenoKeyReleased
 
-    private void txtBICEntidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBICEntidadActionPerformed
+    private void comboContrapartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboContrapartidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBICEntidadActionPerformed
+        
+            comboBICContrapartida.setSelectedIndex(comboContrapartida.getSelectedIndex());
+        
+    }//GEN-LAST:event_comboContrapartidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -580,6 +514,11 @@ public class AltaOrdenes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JComboBox<String> comboBICContrapartida;
+    private javax.swing.JComboBox<String> comboContrapartida;
+    private javax.swing.JComboBox<String> comboCorresponsalAjeno;
+    private javax.swing.JComboBox<String> comboCorresponsalPropio;
+    private javax.swing.JComboBox<String> comboDivisa;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboMensaje;
     private javax.swing.JComboBox<String> jComboSentido;
@@ -603,14 +542,9 @@ public class AltaOrdenes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField txtBICContrapartida;
     private javax.swing.JTextField txtBICEntidad;
-    private javax.swing.JTextField txtContrapartida;
-    private javax.swing.JTextField txtCorresponsalAjeno;
-    private javax.swing.JTextField txtCorresponsalPropio;
     private javax.swing.JTextField txtCuentaCorresponsalAjeno;
     private javax.swing.JTextField txtCuentaCorresponsalPropio;
-    private javax.swing.JTextField txtDivisa;
     private datechooser.beans.DateChooserCombo txtFechaValor;
     private javax.swing.JTextField txtImporte;
     // End of variables declaration//GEN-END:variables
