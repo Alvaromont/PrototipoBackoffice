@@ -34,34 +34,33 @@ public class BackofficeDao {
 //    }
     public void insertarOrden(Orden orden) {
 
-        String sql = "insert into ordenes(id_orden, tipo_orden,BIC_entidad, ref_orden, contrapartida,BIC_contrapartida,sentido, importe, "
+        String sql = "insert into ordenes(tipo_orden,BIC_entidad, ref_orden, contrapartida,BIC_contrapartida,sentido, importe, "
                           + "divisa, fecha_entrada,fecha_valor, fecha_liberacion ,fecha_liquidacion, corresponsal_propio,cuenta_corresponsal_propio,"
-                          + "corresponsal_ajeno, cuenta_corresponsal_ajeno, tipo_mensaje, estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                          + "corresponsal_ajeno, cuenta_corresponsal_ajeno, tipo_mensaje, estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             // prepared statement para insertar con la conexion
             PreparedStatement stmt = this.connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             //setear los valores
-            stmt.setInt(1, orden.getId_orden());
-            stmt.setString(2, orden.getTipo_Orden());
-            stmt.setString(3, orden.getBic_Entidad());      //-------------------------------------------------------------------------------------------------------
-            stmt.setString(4, ""); //LO CALCULAMOS DEBAJO
-            stmt.setString(5, orden.getContrapartida());
-            stmt.setString(6, orden.getBic_Contrapartida());
-            stmt.setString(7, orden.getSentido());
-            stmt.setDouble(8, orden.getImporte());
-            stmt.setString(9, orden.getDivisa());
-            stmt.setString(10, sdf.format(orden.getFecha_Entrada()));
+            stmt.setString(1, orden.getTipo_Orden());
+            stmt.setString(2, orden.getBic_Entidad());      //-------------------------------------------------------------------------------------------------------
+            stmt.setString(3, null); //LO CALCULAMOS DEBAJO
+            stmt.setString(4, orden.getContrapartida());
+            stmt.setString(5, orden.getBic_Contrapartida());
+            stmt.setString(6, orden.getSentido());
+            stmt.setDouble(7, orden.getImporte());
+            stmt.setString(8, orden.getDivisa());
+            stmt.setString(9, sdf.format(orden.getFecha_Entrada()));
+            stmt.setString(10, sdf.format(orden.getFecha_Valor()));
             stmt.setString(11, sdf.format(orden.getFecha_Valor()));
             stmt.setString(12, sdf.format(orden.getFecha_Valor()));
-            stmt.setString(13, sdf.format(orden.getFecha_Valor()));
-            stmt.setString(14, orden.getCorresponsal_Propio());
-            stmt.setString(15, orden.getCuenta_Corresponsal_Propio());
-            stmt.setString(16, orden.getCorresponsal_Ajeno());
-            stmt.setString(17, orden.getCuenta_Corresponsal_Ajeno());
-            stmt.setString(18, orden.getTipo_Mensaje());
-            stmt.setString(19, orden.getEstado());
+            stmt.setString(13, orden.getCorresponsal_Propio());
+            stmt.setString(14, orden.getCuenta_Corresponsal_Propio());
+            stmt.setString(15, orden.getCorresponsal_Ajeno());
+            stmt.setString(16, orden.getCuenta_Corresponsal_Ajeno());
+            stmt.setString(17, orden.getTipo_Mensaje());
+            stmt.setString(18, orden.getEstado());
 
             //ejecuta
             stmt.execute();
@@ -74,7 +73,7 @@ public class BackofficeDao {
             stmt.close();
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -93,7 +92,7 @@ public class BackofficeDao {
 
             int mayor = Integer.parseInt(lastOrden) + 1;
             lastOrden = "" + mayor;
-            lastOrden = StringUtils.leftPad(lastOrden, 8, "0");
+            lastOrden = StringUtils.leftPad(lastOrden, 3, "0");
 
             String sqlupdate = "UPDATE ordenes SET ref_orden = 'ORDEN" + lastOrden + "' WHERE id_orden = " + id;
             stmt = this.connection.prepareStatement(sqlupdate);
@@ -122,13 +121,21 @@ public class BackofficeDao {
                 e.printStackTrace();
             }
 
-        } else if (orden.getSentido().equals("Pago")) {
+        } else if (orden.getSentido().equals("Pago ")) {
+            MensajeDao dao = new MensajeDao();
             try {
                 PreparedStatement stmt = this.connection.prepareStatement("Update ordenes set estado=?, fecha_liberacion=?, tipo_mensaje=? where ref_orden=?");
                 stmt.setString(1, "Liberada");
+                orden.setEstado("Liberada");
                 stmt.setString(2, sdf.format(new java.util.Date()));
-                stmt.setString(3, "MT202");
+                stmt.setString(3, orden.getTipo_Mensaje());
                 stmt.setString(4, orden.getRef_Orden());
+                if (orden.getTipo_Mensaje().equals("MT103")) {
+                    dao.insertarMensajeMT103(orden);
+                } else {
+                    dao.insertarMensajeMT202(orden);
+                }
+                
                 stmt.execute();
                 stmt.close();
 
@@ -150,7 +157,7 @@ public class BackofficeDao {
 
                 stmt.execute();
                 stmt.close();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "NO ES POSIBLE LIBERAR LA ORDEN SELECCIONADA MANUALMENTE");
             }
         } catch (SQLException e) {
@@ -184,7 +191,7 @@ public class BackofficeDao {
                 String corresponsalPropio = rs.getString("corresponsal_propio");
                 String cuentaCP = rs.getString("cuenta_corresponsal_propio");
 
-                Orden orden = new Orden(tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
+                Orden orden = new Orden(id, tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
                                   fechaLiquidacion, estado, TRN, corresponsalPropio, cuentaCP);
                 ordenes.add(orden);
             }
@@ -230,8 +237,8 @@ public class BackofficeDao {
                 String cuentaCA = rs.getString("cuenta_corresponsal_ajeno");
                 String tipoMensaje = rs.getString("tipo_mensaje");
 
-                orden = new Orden(bic_Entidad,tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
-                                  fechaLiquidacion, fechaLiberacion,estado, TRN, corresponsalPropio, cuentaCP, bic_contrapartida, 
+                orden = new Orden(idOrden, bic_Entidad, tipoOrden, refOrden, contrapartida, sentido, importe, divisa, fechaEntrada, fechaValor,
+                                  fechaLiquidacion, fechaLiberacion, estado, TRN, corresponsalPropio, cuentaCP, bic_contrapartida,
                                   corresponsalAjeno, cuentaCA, tipoMensaje);
             }
             rs.close();
@@ -356,5 +363,9 @@ public class BackofficeDao {
         } catch (Exception e) {
         }
         return trn;
+    }
+
+    private MensajeDao MensajeDao() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -40,7 +40,7 @@ public class Orden {
     public Orden() {
     }
 
-    public Orden(String Tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, int id_orden, String bic_Entidad, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
+    public Orden(int id, String Tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion, String corresponsal_Propio, String cuenta_Corresponsal_Propio, int id_orden, String bic_Entidad, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
         this.Tipo_Orden = Tipo_Orden;
         this.ref_Orden = ref_Orden;
         this.contrapartida = contrapartida;
@@ -61,9 +61,10 @@ public class Orden {
         this.tipo_Mensaje = tipo_Mensaje;
         this.Mensajes_emitidos = Mensajes_emitidos;
         this.Mensajes_recibidos = Mensajes_recibidos;
+        this.id_orden = id;
     }
 
-    public Orden(String tipo_orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, String estado, String trn_orden, String corresponsal_Propio, String cuenta_Corresponsal_Propio) {
+    public Orden(int id, String tipo_orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, String estado, String trn_orden, String corresponsal_Propio, String cuenta_Corresponsal_Propio) {
         this.ref_Orden = ref_Orden;
         this.contrapartida = contrapartida;
         this.sentido = sentido;
@@ -77,9 +78,10 @@ public class Orden {
         this.trn_orden = trn_orden;
         this.Tipo_Orden = tipo_orden;
         this.estado = estado;
+        this.id_orden = id;
     }
 
-    public Orden(String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion,String estado,String TRN, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
+    public Orden(int id, String bic_Entidad, String tipo_Orden, String ref_Orden, String contrapartida, String sentido, double importe, String divisa, Date fecha_Entrada, Date fecha_Valor, Date fecha_Liquidacion, Date fecha_liberacion,String estado,String TRN, String corresponsal_Propio, String cuenta_Corresponsal_Propio, String bic_Contrapartida, String corresponsal_Ajeno, String cuenta_Corresponsal_Ajeno, String tipo_Mensaje) {
         this.ref_Orden = ref_Orden;
         this.bic_Entidad = bic_Entidad;
         this.contrapartida = contrapartida;
@@ -96,6 +98,7 @@ public class Orden {
         this.corresponsal_Ajeno = corresponsal_Ajeno;
         this.cuenta_Corresponsal_Ajeno = cuenta_Corresponsal_Ajeno;
         this.tipo_Mensaje = tipo_Mensaje;
+        this.id_orden = id;
         this.estado = estado;
         this.trn_orden = TRN;
     }

@@ -13,11 +13,9 @@ public class RecepcionMensajes extends javax.swing.JFrame {
 
     Orden orden = new Orden();
 
-
     /**
      * Creates new form RecepcionMensajes
      */
-
     public RecepcionMensajes(Orden orden) {
         initComponents();
         this.orden = orden;
@@ -43,32 +41,12 @@ public class RecepcionMensajes extends javax.swing.JFrame {
         jLabel1.setText("SELECCION DEL MENSAJE A RECIBIR:");
 
         btnMT900.setText("MT900");
-        btnMT900.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMT900ActionPerformed(evt);
-            }
-        });
 
         btnMT910.setText("MT910");
-        btnMT910.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMT910ActionPerformed(evt);
-            }
-        });
 
         btnACK.setText("ACK");
-        btnACK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnACKActionPerformed(evt);
-            }
-        });
 
         btnNACK.setText("NACK");
-        btnNACK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNACKActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,38 +83,8 @@ public class RecepcionMensajes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMT900ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMT900ActionPerformed
-        // obtengo los datos del mensaje a introducir
-        
-        getMensaje(Mensaje, Orden);
-        // Creo el mensaje correspondiente a los datos recibidos
-        //Y lo almaceno en la base de datos de mensajes
-        insertarMensaje(Mensaje, Orden);
-    }//GEN-LAST:event_btnMT900ActionPerformed
-
-    private void btnMT910ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMT910ActionPerformed
-        // obtengo los datos del mensaje a introducir
-        getMensaje(Mensaje, Orden);
-        // Creo el mensaje correspondiente a los datos recibidos
-        //Y lo almaceno en la base de datos de mensajes
-        insertarMensaje(Mensaje, Orden);
-    }//GEN-LAST:event_btnMT910ActionPerformed
-
-    private void btnACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACKActionPerformed
-// obtengo los datos del mensaje a introducir
-        getMensaje(Mensaje, Orden);
-        // Creo el mensaje correspondiente a los datos recibidos
-        //Y lo almaceno en la base de datos de mensajes
-        insertarMensaje(Mensaje, Orden);    }//GEN-LAST:event_btnACKActionPerformed
-
-    private void btnNACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNACKActionPerformed
-// obtengo los datos del mensaje a introducir
-        getMensaje(Mensaje, Orden);
-        // Creo el mensaje correspondiente a los datos recibidos
-        //Y lo almaceno en la base de datos de mensajes
-        insertarMensaje(Mensaje, Orden);    }//GEN-LAST:event_btnNACKActionPerformed
-
+/*
+    */
     /**
      * @param args the command line arguments
      */
@@ -167,7 +115,7 @@ public class RecepcionMensajes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RecepcionMensajes().setVisible(true);
+                //new RecepcionMensajes().setVisible(true);
             }
         });
     }

@@ -69,33 +69,21 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="MT900"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMT900ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMT910">
       <Properties>
         <Property name="text" type="java.lang.String" value="MT910"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMT910ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnACK">
       <Properties>
         <Property name="text" type="java.lang.String" value="ACK"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnACKActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnNACK">
       <Properties>
         <Property name="text" type="java.lang.String" value="NACK"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNACKActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

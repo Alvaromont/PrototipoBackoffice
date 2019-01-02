@@ -20,13 +20,27 @@ public class Mensaje {
     private int id_mensaje;
     private String bic_entidad;
     private String bic_corresponsal_propio;
+    private String MUR;
+
+    private String campo21, campo32A, campo53A, campo57A, campo23B, campo23E, campo50A,
+                      campo2, campo59A, campo71A, campo56D, campo72, campo25, sentido;
+
+    public Mensaje(String bic_entidad, String MUR) {
+        this.bic_entidad = bic_entidad;
+        this.MUR = MUR;
+    }
+
     
-    private String campo21, campo32A, campo53A, campo57A, campo23B, campo23E,campo50A, 
-                      campo2,campo59A, campo71A,campo56D,campo72, campo25, sentido; 
     
     
     
-    
+    public String getMUR() {
+        return MUR;
+    }
+
+    public void setMUR(String MUR) {
+        this.MUR = MUR;
+    }
 
     public String getBic_entidad() {
         return bic_entidad;
@@ -44,10 +58,6 @@ public class Mensaje {
         this.bic_corresponsal_propio = bic_corresponsal_propio;
     }
 
-    
-    
-    
-    
     public void setId_mensaje(int id_mensaje) {
         this.id_mensaje = id_mensaje;
     }
@@ -216,9 +226,4 @@ public class Mensaje {
         this.campo2 = campo2;
     }
 
-    
-    
-    
-    
-    
 }

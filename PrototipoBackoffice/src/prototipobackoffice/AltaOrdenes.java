@@ -32,8 +32,6 @@ public class AltaOrdenes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtBICEntidad = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtReferenciaOrden = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -41,7 +39,6 @@ public class AltaOrdenes extends javax.swing.JFrame {
         txtImporte = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtFechaValor = new javax.swing.JTextField();
         jComboSentido = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jComboMensaje = new javax.swing.JComboBox<>();
@@ -68,15 +65,11 @@ public class AltaOrdenes extends javax.swing.JFrame {
         comboContrapartida = new javax.swing.JComboBox<>();
         comboBICContrapartida = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("(*) BIC Entidad:");
 
         txtBICEntidad.setText("BSCHESMMXXX");
-
-        jLabel2.setText("(*) Referencia Orden:");
-
-        txtReferenciaOrden.setText("Auto Increment");
 
         jLabel3.setText("(*) Contrapartida:");
 
@@ -228,37 +221,37 @@ public class AltaOrdenes extends javax.swing.JFrame {
 
         txtFechaValor.setCurrentView(new datechooser.view.appearance.AppearancesList("Light",
             new datechooser.view.appearance.ViewAppearance("custom",
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 18),
                     new java.awt.Color(187, 187, 187),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 18),
                     new java.awt.Color(187, 187, 187),
                     new java.awt.Color(0, 0, 255),
                     true,
                     true,
                     new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 18),
                     new java.awt.Color(0, 0, 255),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 18),
                     new java.awt.Color(128, 128, 128),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 18),
                     new java.awt.Color(187, 187, 187),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 18),
                     new java.awt.Color(187, 187, 187),
                     new java.awt.Color(255, 0, 0),
                     false,
@@ -292,8 +285,10 @@ public class AltaOrdenes extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel14))
+                                .addComponent(jLabel14)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(jLabel5)))
                             .addGap(10, 10, 10))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -392,11 +387,11 @@ public class AltaOrdenes extends javax.swing.JFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(47, 47, 47))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
+                            .addGap(61, 61, 61)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jComboSentido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(52, 52, 52)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -429,8 +424,9 @@ public class AltaOrdenes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+       
         try {
+            String bic_Entidad = "BSCHESMMXXX";
             String tipo_Orden = "Individual";
             String ref_Orden = "";
             String contrapartida = comboContrapartida.getSelectedItem().toString();
@@ -448,9 +444,10 @@ public class AltaOrdenes extends javax.swing.JFrame {
             String cuenta_Corresponsal_Ajeno = txtCuentaCorresponsalAjeno.getText();
             String tipo_Mensaje = jComboMensaje.getSelectedItem().toString();
             String estado = "No liberada";
-            Orden ordenInsertar = new Orden(tipo_Orden, ref_Orden, contrapartida, sentido, importe, divisa, fecha_Entrada, fecha_Valor, fecha_Liquidacion, fecha_liberacion, corresponsal_Propio, cuenta_Corresponsal_Propio, bic_Contrapartida, corresponsal_Ajeno, cuenta_Corresponsal_Ajeno, tipo_Mensaje);
+            Orden ordenInsertar = new Orden(bic_Entidad, tipo_Orden, ref_Orden, contrapartida, sentido, importe, divisa, fecha_Entrada, fecha_Valor, fecha_Liquidacion, fecha_liberacion, corresponsal_Propio, cuenta_Corresponsal_Propio, bic_Contrapartida, corresponsal_Ajeno, cuenta_Corresponsal_Ajeno, tipo_Mensaje);
 
             new BackofficeDao().insertarOrden(ordenInsertar);
+            dispose();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El campo importe debe contener un valor estrictamente numerico", "ATENCION", JOptionPane.ERROR_MESSAGE);
         }
@@ -479,7 +476,6 @@ public class AltaOrdenes extends javax.swing.JFrame {
         txtCuentaCorresponsalPropio.setText("");
         txtFechaValor.setText("");
         txtImporte.setText("");
-        txtReferenciaOrden.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtCuentaCorresponsalPropioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaCorresponsalPropioKeyPressed
@@ -577,7 +573,6 @@ public class AltaOrdenes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -596,6 +591,5 @@ public class AltaOrdenes extends javax.swing.JFrame {
     private javax.swing.JTextField txtCuentaCorresponsalPropio;
     private datechooser.beans.DateChooserCombo txtFechaValor;
     private javax.swing.JTextField txtImporte;
-    private javax.swing.JTextField txtReferenciaOrden;
     // End of variables declaration//GEN-END:variables
 }
